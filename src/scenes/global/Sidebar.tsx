@@ -8,7 +8,7 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
 
-const Item = ({ title, to, icon, selected, setSelected }) => {
+const Item = ({ title, to, icon, selected, setSelected }: { title: any; to: any; icon:any; selected:any; setSelected:any}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
@@ -52,14 +52,16 @@ const Sidebar = () => {
         },
       }}
     >
-      <ProSidebar collapsedWidth="35px" collapsed={isCollapsed}>
+      <ProSidebar 
+      collapsedWidth="35px" 
+      collapsed={isCollapsed}>
         <Menu iconShape="square">
           {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
             style={{
-              margin: "5px 0 5px 0",
+              margin: "10px 0 20px 0",
               marginLeft: 0,
               color: colors.grey[100],
             }}
@@ -69,9 +71,9 @@ const Sidebar = () => {
                 display="flex"
                 justifyContent="space-between"
                 alignItems="center"
-                ml="10px"
+                ml="15px"
               >
-                <Typography variant="h3" color={colors.grey[100]}>
+                <Typography variant="h4" color={colors.grey[100]}>
                   ADMINIS
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
