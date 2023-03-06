@@ -6,7 +6,7 @@ import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-
+import PublicIcon from '@mui/icons-material/Public';
 
 const Item = ({ title, to, icon, selected, setSelected }: { title: any; to: any; icon:any; selected:any; setSelected:any}) => {
   const theme = useTheme();
@@ -96,7 +96,7 @@ const Sidebar = () => {
                   Nom Utilisateur
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                Niveau d'acces
+                  Niveau d'Access
                 </Typography>
               </Box>
             </Box>
@@ -107,6 +107,20 @@ const Sidebar = () => {
               title="Dashboard"
               to="/"
               icon={<HomeOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+                        <Item
+              title="Metro"
+              to="/metro"
+              icon={<PublicIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+             <Item
+              title="NetworkChart"
+              to="/NetworkChart"
+              icon={<PublicIcon />}
               selected={selected}
               setSelected={setSelected}
             />
