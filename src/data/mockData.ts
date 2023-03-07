@@ -251,7 +251,8 @@ export const mockDataNodes  =
       "id": "ASR9010-1 Ariana",
             "height": 2,
             "size": 32,
-            "color": "rgb(244, 117, 96)"
+            "color": "rgb(244, 117, 96)",
+            
       },
     {
         "id": "ASR9010-2 Ariana",
@@ -461,334 +462,488 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "ASR9010-2 Ariana",
-      "distance": 250
+      "distance": 80
     }, 
+
+
+
+
+
+
    
     {
       "source": "ASR9010-1 Ariana",
       "target": "NCS540-ARIANA-1",
-      "distance": 80
+      "distance": 40
     }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "NCS540-ARIANA-2",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "ARIANA",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "GHAZELA-NEW 903",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "RIADH EL ANDALOUS",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "Raoued",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "Borj Touil",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "Geant",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "PETITE ARIANA",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "Petite-Ariana",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "ENKHILETTE",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "GHAZELA",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "ENNASR I",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "JARDIN EL MANZAH II",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "EJARDIN MANZAH I",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "ENNASR II",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "ENNASR III",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "EL MANAR",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "MANAR",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "MANAR 2",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "EL MANZAH 6",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "MANZAH",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "AEROPORT TUNIS CARTHAGE",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "CENTRE DE TRI",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "SidI FRADJ1",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "SidI FRADJ2",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "SidI FRADJ3",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "TAIEB MHIRI",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "JEMAA RAOUDHA",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "AOUINA",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "SOUKRA",
-      "distance": 80
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "BORJ LOUZIR",
-      "distance": 80
-    },
     {
       "source": "ASR9010-2 Ariana",
       "target": "NCS540-ARIANA-1",
-      "distance": 80
+      "distance": 120
+    }, 
+
+    {
+      "source": "NCS540-ARIANA-1",
+      "target": "NCS540-ARIANA-2",
+      "distance": 10
+    }, 
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "NCS540-ARIANA-2",
+      "distance": 40
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "NCS540-ARIANA-2",
-      "distance": 80
+      "distance": 120
+    }, 
+
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "ARIANA",
+      "distance": 44
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "ARIANA",
-      "distance": 80
+      "distance": 119
+    }, 
+
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "GHAZELA-NEW 903",
+      "distance": 53
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "GHAZELA-NEW 903",
-      "distance": 80
+      "distance": 115
     }, 
+
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "GHAZELA",
+      "distance": 65
+    },
     {
       "source": "ASR9010-2 Ariana",
+      "target": "GHAZELA",
+      "distance": 108
+    }, 
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
       "target": "RIADH EL ANDALOUS",
-      "distance": 80
+      "distance": 78
+    }, 
+   {
+      "source": "ASR9010-2 Ariana",
+      "target": "RIADH EL ANDALOUS",
+      "distance": 100
+    },
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "Raoued",
+      "distance": 89
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "Raoued",
-      "distance": 80
+      "distance": 89
+    }, 
+
+
+
+
+    {
+      "source": "Raoued",
+      "target": "Borj Touil",
+      "distance": 10
     }, 
     {
-      "source": "ASR9010-2 Ariana",
+      "source": "Geant",
       "target": "Borj Touil",
-      "distance": 80
+      "distance": 10
+    }, 
+
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "Geant",
+      "distance": 89
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "Geant",
-      "distance": 80
+      "distance": 89
+    }, 
+
+
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "PETITE ARIANA",
+      "distance": 100
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "PETITE ARIANA",
-      "distance": 80
+      "distance": 78
+    }, 
+
+
+
+
+
+    {
+      "source": "PETITE ARIANA",
+      "target": "Petite-Ariana",
+      "distance": 10
     }, 
     {
-      "source": "ASR9010-2 Ariana",
+      "source": "ENKHILETTE",
       "target": "Petite-Ariana",
-      "distance": 80
+      "distance": 10
     }, 
+
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "ENKHILETTE",
+      "distance": 100
+    },  
     {
       "source": "ASR9010-2 Ariana",
       "target": "ENKHILETTE",
-      "distance": 80
+      "distance": 78
     }, 
+
+
+
+
+
     {
-      "source": "ASR9010-2 Ariana",
-      "target": "GHAZELA",
-      "distance": 80
-    }, 
-    {
+      "source": "ASR9010-1 Ariana",
+      "target": "ENNASR I",
+      "distance": 108
+    },
+        {
       "source": "ASR9010-2 Ariana",
       "target": "ENNASR I",
-      "distance": 80
+      "distance": 65
+    }, 
+    
+
+
+
+
+    {
+      "source": "ENNASR I",
+      "target": "JARDIN EL MANZAH II",
+      "distance": 10
     }, 
     {
-      "source": "ASR9010-2 Ariana",
+      "source": "EJARDIN MANZAH I",
       "target": "JARDIN EL MANZAH II",
-      "distance": 80
+      "distance": 10
+    }, 
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "EJARDIN MANZAH I",
+      "distance": 108
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "EJARDIN MANZAH I",
-      "distance": 80
+      "distance": 65
+    }, 
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "ENNASR II",
+      "distance": 115
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "ENNASR II",
-      "distance": 80
+      "distance": 53
+    }, 
+    {
+      "source": "ENNASR III",
+      "target": "ENNASR II",
+      "distance": 10
+    }, 
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "ENNASR III",
+      "distance": 115
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "ENNASR III",
-      "distance": 80
+      "distance": 53
+    }, 
+
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "EL MANAR",
+      "distance": 119
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "EL MANAR",
-      "distance": 80
+      "distance": 44
+    }, 
+    {
+      "source": "MANAR",
+      "target": "EL MANAR",
+      "distance": 10
+    }, 
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "MANAR",
+      "distance": 119
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "MANAR",
-      "distance": 80
+      "distance": 44
+    }, 
+
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "MANAR 2",
+      "distance": 120
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "MANAR 2",
-      "distance": 80
+      "distance": 40
+    }, 
+
+
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "EL MANZAH 6",
+      "distance": 119
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "EL MANZAH 6",
-      "distance": 80
+      "distance": 44
+    },
+    {
+      "source": "EL MANZAH 6",
+      "target": "MANZAH",
+      "distance": 10
+    }, 
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "MANZAH",
+      "distance": 119
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "MANZAH",
-      "distance": 80
+      "distance": 44
+    }, 
+
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "AEROPORT TUNIS CARTHAGE",
+      "distance": 115
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "AEROPORT TUNIS CARTHAGE",
-      "distance": 80
+      "distance": 53
+    }, 
+    {
+      "source": "AEROPORT TUNIS CARTHAGE",
+      "target": "CENTRE DE TRI",
+      "distance": 10
+    }, 
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "CENTRE DE TRI",
+      "distance": 115
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "CENTRE DE TRI",
-      "distance": 80
+      "distance": 53
+    }, 
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "SidI FRADJ1",
+      "distance": 108
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "SidI FRADJ1",
-      "distance": 80
+      "distance": 65
+    }, 
+    {
+      "source": "SidI FRADJ1",
+      "target": "SidI FRADJ2",
+      "distance": 10
+    }, 
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "SidI FRADJ2",
+      "distance": 108
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "SidI FRADJ2",
-      "distance": 80
+      "distance": 65
+    }, 
+
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "SidI FRADJ3",
+      "distance": 100
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "SidI FRADJ3",
-      "distance": 80
+      "distance": 78
+    }, 
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "TAIEB MHIRI",
+      "distance": 89
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "TAIEB MHIRI",
-      "distance": 80
+      "distance": 89
+    }, 
+
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "JEMAA RAOUDHA",
+      "distance": 78
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "JEMAA RAOUDHA",
-      "distance": 80
+      "distance": 100
+    }, 
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "AOUINA",
+      "distance": 65
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "AOUINA",
-      "distance": 80
+      "distance": 108
+    }, 
+
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "SOUKRA",
+      "distance": 53
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "SOUKRA",
-      "distance": 80
+      "distance": 115
     }, 
+
+
+
+
+
+    {
+      "source": "ASR9010-1 Ariana",
+      "target": "BORJ LOUZIR",
+      "distance": 40
+    },
     {
       "source": "ASR9010-2 Ariana",
       "target": "BORJ LOUZIR",
-      "distance": 80
+      "distance": 119
     },
-// links the secondary stations
-    {
-      "source": "NCS540-ARIANA-2",
-      "target": "NCS540-ARIANA-1",
-      "distance": 80
-    },
+
+
+
   ]
 }

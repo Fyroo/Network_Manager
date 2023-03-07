@@ -6,7 +6,7 @@ import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettin
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Header from "../../components/Header";
 
-const Metro = () => {
+const Metro = ({isDashboard = false}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
@@ -16,22 +16,26 @@ const Metro = () => {
       headerName: "Name",
       flex: 1,
       cellClassName: "name-column--cell",
+      minWidth: 100,
     },
     {
       field: "IP",
       headerName: "Address",
       flex:1,
+      minWidth: 100,
     },
     {
       field: "Model",
       headerName: "Model",
       flex: 1,
+      minWidth: 100,
     },
     {
       field: "access",
       headerName: "Access Level",
       flex: 1,
       headerAlign:"center",
+      minWidth: 100,
       renderCell: (params: GridCellParams) => {
         const access = params.value as string;
         return (
@@ -60,11 +64,11 @@ const Metro = () => {
   ];
 
   return (
-    <Box m="20px">
+    <Box m={isDashboard ? "0px" : "20px"}>
       {/* <Header title="" subtitle="" /> */}
       <Box
-        m="40px 0 0 0"
-        height="35vh"
+        m={isDashboard ? "0 0 0 0" : "40px 0 0 0"}
+        height={isDashboard ? "30vh" : "75vh"}
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -106,6 +110,7 @@ const Metro = () => {
         <DataGrid hideFooter 
         rows={mockDataMetro} 
         columns={columns}  
+        
         components={{ Toolbar: GridToolbar }} />
       </Box>
     </Box>

@@ -15,7 +15,7 @@ const Dashboard = () => {
       display="grid"
       gridTemplateColumns="repeat(12, 1fr)"
       gridAutoRows="140px"
-      gap="20px">
+      gap="23px">
 
       <Box gridColumn="span 8" gridRow="span 3" style={{ backgroundColor:colors.primary[400]}}>
         <Box mt="25px" p="0 30px" justifyContent="space-between" alignContent={"center"}>
@@ -26,11 +26,11 @@ const Dashboard = () => {
         
           <NetworkChart/>
       </Box>  
-      <Box gridColumn="span 4" gridRow="span 3" style={{ backgroundColor:colors.primary[400]}}>
+      <Box display="felx" gridColumn="span 4" gridRow="span 3" style={{ backgroundColor:colors.primary[400]}}>
       
       </Box>
-      <Box display={"felx"} gridColumn="span 8" gridRow="span 3" style={{ backgroundColor:colors.primary[400]}} >
-        <Metro></Metro>
+      <Box display="felx" gridColumn="span 8" gridRow="span 2" style={{ backgroundColor:colors.primary[400]}} >
+        <Metro isDashboard = {true}/>
       </Box>
 
 
