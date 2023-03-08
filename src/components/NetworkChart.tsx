@@ -36,6 +36,13 @@ const NetworkChart = ()=>{
                 //     fill: colors.grey[100]
                 // }
             }
+        , tooltip:{
+            container:{
+                background:colors.primary[900],
+                color:colors.primary[100]
+
+            }
+        }    
         }}
         margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
         linkDistance={function(e){return e.distance}}
