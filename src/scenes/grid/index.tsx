@@ -10,7 +10,6 @@ const Metro = ({isDashboard = false}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
-    // { field: "id", headerName: "ID" },
     {
       field: "name",
       headerName: "Name",
@@ -109,7 +108,7 @@ const Metro = ({isDashboard = false}) => {
       >
         <DataGrid hideFooter 
         rows={mockDataMetro} 
-        columns={columns}  
+        columns={columns}
         
         components={{ Toolbar: GridToolbar }} />
       </Box>

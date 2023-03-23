@@ -462,7 +462,7 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "ASR9010-2 Ariana",
-      "distance": 80
+      "distance": 400
     }, 
 
 
@@ -474,29 +474,17 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "NCS540-ARIANA-1",
-      "distance": 40
+      "distance": 140
     }, 
-    {
-      "source": "ASR9010-2 Ariana",
-      "target": "NCS540-ARIANA-1",
-      "distance": 120
-    }, 
-
     {
       "source": "NCS540-ARIANA-1",
       "target": "NCS540-ARIANA-2",
-      "distance": 10
-    }, 
-
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "NCS540-ARIANA-2",
-      "distance": 40
+      "distance": 15
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "NCS540-ARIANA-2",
-      "distance": 120
+      "distance": 140
     }, 
 
 
@@ -506,12 +494,12 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "ARIANA",
-      "distance": 44
+      "distance": 159
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "ARIANA",
-      "distance": 119
+      "distance": 159
     }, 
 
 
@@ -521,12 +509,12 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "GHAZELA-NEW 903",
-      "distance": 53
+      "distance": 174
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "GHAZELA-NEW 903",
-      "distance": 115
+      "distance": 174
     }, 
 
 
@@ -536,12 +524,12 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "GHAZELA",
-      "distance": 65
+      "distance": 189
     },
     {
       "source": "ASR9010-2 Ariana",
       "target": "GHAZELA",
-      "distance": 108
+      "distance": 189
     }, 
 
 
@@ -550,12 +538,12 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "RIADH EL ANDALOUS",
-      "distance": 78
+      "distance": 204
     }, 
    {
       "source": "ASR9010-2 Ariana",
       "target": "RIADH EL ANDALOUS",
-      "distance": 100
+      "distance": 204
     },
 
 
@@ -564,17 +552,13 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "Raoued",
-      "distance": 89
+      "distance": 200
     }, 
-    {
-      "source": "ASR9010-2 Ariana",
-      "target": "Raoued",
-      "distance": 89
-    }, 
-
-
-
-
+////////////
+////////////
+////////////
+////////////
+////////////
     {
       "source": "Raoued",
       "target": "Borj Touil",
@@ -585,20 +569,15 @@ export const mockDataNodes  =
       "target": "Borj Touil",
       "distance": 10
     }, 
-
-
-
-
-
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "Geant",
-      "distance": 89
-    }, 
+////////////
+////////////
+////////////
+////////////
+////////////
     {
       "source": "ASR9010-2 Ariana",
       "target": "Geant",
-      "distance": 89
+      "distance": 220
     }, 
 
 
@@ -609,18 +588,13 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "PETITE ARIANA",
-      "distance": 100
+      "distance": 259
     }, 
-    {
-      "source": "ASR9010-2 Ariana",
-      "target": "PETITE ARIANA",
-      "distance": 78
-    }, 
-
-
-
-
-
+////////////
+////////////
+////////////
+////////////
+////////////
     {
       "source": "PETITE ARIANA",
       "target": "Petite-Ariana",
@@ -631,20 +605,15 @@ export const mockDataNodes  =
       "target": "Petite-Ariana",
       "distance": 10
     }, 
-
-
-
-
-
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "ENKHILETTE",
-      "distance": 100
-    },  
+////////////
+////////////
+////////////
+////////////
+//////////// 
     {
       "source": "ASR9010-2 Ariana",
       "target": "ENKHILETTE",
-      "distance": 78
+      "distance": 259
     }, 
 
 
@@ -654,18 +623,13 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "ENNASR I",
-      "distance": 108
+      "distance": 292
     },
-        {
-      "source": "ASR9010-2 Ariana",
-      "target": "ENNASR I",
-      "distance": 65
-    }, 
-    
-
-
-
-
+////////////
+////////////
+////////////
+////////////
+////////////
     {
       "source": "ENNASR I",
       "target": "JARDIN EL MANZAH II",
@@ -676,19 +640,15 @@ export const mockDataNodes  =
       "target": "JARDIN EL MANZAH II",
       "distance": 10
     }, 
-
-
-
-
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "EJARDIN MANZAH I",
-      "distance": 108
-    }, 
+////////////
+////////////
+////////////
+////////////
+////////////
     {
       "source": "ASR9010-2 Ariana",
       "target": "EJARDIN MANZAH I",
-      "distance": 65
+      "distance": 292
     }, 
 
 
@@ -697,27 +657,17 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "ENNASR II",
-      "distance": 115
+      "distance": 290
     }, 
     {
-      "source": "ASR9010-2 Ariana",
-      "target": "ENNASR II",
-      "distance": 53
-    }, 
-    {
-      "source": "ENNASR III",
-      "target": "ENNASR II",
-      "distance": 10
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
+      "source": "ENNASR II",
       "target": "ENNASR III",
-      "distance": 115
+      "distance": 20
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "ENNASR III",
-      "distance": 53
+      "distance": 290
     }, 
 
 
@@ -727,27 +677,17 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "EL MANAR",
-      "distance": 119
-    }, 
-    {
-      "source": "ASR9010-2 Ariana",
-      "target": "EL MANAR",
-      "distance": 44
-    }, 
+      "distance": 350
+    },  
     {
       "source": "MANAR",
       "target": "EL MANAR",
       "distance": 10
     }, 
     {
-      "source": "ASR9010-1 Ariana",
-      "target": "MANAR",
-      "distance": 119
-    }, 
-    {
       "source": "ASR9010-2 Ariana",
       "target": "MANAR",
-      "distance": 44
+      "distance": 350
     }, 
 
 
@@ -757,12 +697,12 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "MANAR 2",
-      "distance": 120
+      "distance": 450
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "MANAR 2",
-      "distance": 40
+      "distance": 450
     }, 
 
 
@@ -773,27 +713,17 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "EL MANZAH 6",
-      "distance": 119
+      "distance": 350
     }, 
-    {
-      "source": "ASR9010-2 Ariana",
-      "target": "EL MANZAH 6",
-      "distance": 44
-    },
     {
       "source": "EL MANZAH 6",
       "target": "MANZAH",
-      "distance": 10
-    }, 
-    {
-      "source": "ASR9010-1 Ariana",
-      "target": "MANZAH",
-      "distance": 119
-    }, 
+      "distance": 100
+    },  
     {
       "source": "ASR9010-2 Ariana",
       "target": "MANZAH",
-      "distance": 44
+      "distance": 350
     }, 
 
 
@@ -803,12 +733,7 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "AEROPORT TUNIS CARTHAGE",
-      "distance": 115
-    }, 
-    {
-      "source": "ASR9010-2 Ariana",
-      "target": "AEROPORT TUNIS CARTHAGE",
-      "distance": 53
+      "distance": 320
     }, 
     {
       "source": "AEROPORT TUNIS CARTHAGE",
@@ -816,14 +741,9 @@ export const mockDataNodes  =
       "distance": 10
     }, 
     {
-      "source": "ASR9010-1 Ariana",
-      "target": "CENTRE DE TRI",
-      "distance": 115
-    }, 
-    {
       "source": "ASR9010-2 Ariana",
       "target": "CENTRE DE TRI",
-      "distance": 53
+      "distance": 320
     }, 
 
 
@@ -832,12 +752,7 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "SidI FRADJ1",
-      "distance": 108
-    }, 
-    {
-      "source": "ASR9010-2 Ariana",
-      "target": "SidI FRADJ1",
-      "distance": 65
+      "distance": 292
     }, 
     {
       "source": "SidI FRADJ1",
@@ -845,14 +760,9 @@ export const mockDataNodes  =
       "distance": 10
     }, 
     {
-      "source": "ASR9010-1 Ariana",
-      "target": "SidI FRADJ2",
-      "distance": 108
-    }, 
-    {
       "source": "ASR9010-2 Ariana",
       "target": "SidI FRADJ2",
-      "distance": 65
+      "distance": 292
     }, 
 
 
@@ -862,12 +772,12 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "SidI FRADJ3",
-      "distance": 100
+      "distance": 259
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "SidI FRADJ3",
-      "distance": 78
+      "distance": 259
     }, 
 
 
@@ -876,12 +786,12 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "TAIEB MHIRI",
-      "distance": 89
+      "distance": 220
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "TAIEB MHIRI",
-      "distance": 89
+      "distance": 220
     }, 
 
 
@@ -891,12 +801,12 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "JEMAA RAOUDHA",
-      "distance": 78
+      "distance": 204
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "JEMAA RAOUDHA",
-      "distance": 100
+      "distance": 204
     }, 
 
 
@@ -905,12 +815,12 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "AOUINA",
-      "distance": 65
+      "distance": 189
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "AOUINA",
-      "distance": 108
+      "distance": 189
     }, 
 
 
@@ -920,12 +830,12 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "SOUKRA",
-      "distance": 53
+      "distance": 174
     }, 
     {
       "source": "ASR9010-2 Ariana",
       "target": "SOUKRA",
-      "distance": 115
+      "distance": 174
     }, 
 
 
@@ -935,12 +845,12 @@ export const mockDataNodes  =
     {
       "source": "ASR9010-1 Ariana",
       "target": "BORJ LOUZIR",
-      "distance": 40
+      "distance": 159
     },
     {
       "source": "ASR9010-2 Ariana",
       "target": "BORJ LOUZIR",
-      "distance": 119
+      "distance": 159
     },
 
 

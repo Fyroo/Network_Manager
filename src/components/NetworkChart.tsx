@@ -2,7 +2,6 @@ import { ResponsiveNetwork } from '@nivo/network'
 import { useTheme } from '@mui/material'
 import { tokens } from '../theme'
 import { mockDataNodes as data } from '../data/mockData'
-import AddAlarmOutlinedIcon from '@mui/icons-material/AddAlarmOutlined';
 const NetworkChart = ()=>{
     const theme = useTheme();
     const colors = tokens(theme.palette.mode)
@@ -35,13 +34,20 @@ const NetworkChart = ()=>{
                 // text:{
                 //     fill: colors.grey[100]
                 // }
+            },
+            tooltip:{
+                container:{
+                    background:colors.primary[900],
+                    color:colors.primary[100]
+                    
+                }
             }
         }}
         margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
         linkDistance={function(e){return e.distance}}
-        centeringStrength={0.1}
-        repulsivity={50}
-        iterations={100}
+        centeringStrength={4.1}
+        repulsivity={100}
+        iterations={300}
         // nodeComponent = {AddAlarmOutlinedIcon}
         nodeSize={function(n){return n.size}}
         activeNodeSize={22}

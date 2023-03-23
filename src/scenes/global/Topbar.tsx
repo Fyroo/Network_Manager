@@ -18,7 +18,7 @@ const Topbar:React.FC = () => {
 
   return (
     // Render a box with flex display and space-between justification with 2 units of padding
-    <Box display="flex" justifyContent="space-between" p={2}>
+    <Box display="flex" justifyContent="space-between" p={2} pb={0}>
 
       {/* SEARCH BAR */}
 
