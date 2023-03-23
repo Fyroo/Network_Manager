@@ -1,7 +1,7 @@
 import { ResponsiveNetwork } from '@nivo/network'
 import { useTheme } from '@mui/material'
-import { tokens } from '../theme'
-import { mockDataNodes as data } from '../data/mockData'
+import { tokens } from '../../theme'
+import { mockDataNodes as data } from '../../data/mockData'
 const NetworkChart = ()=>{
     const theme = useTheme();
     const colors = tokens(theme.palette.mode)
@@ -42,13 +42,7 @@ const NetworkChart = ()=>{
                     
                 }
             }
-        , tooltip:{
-            container:{
-                background:colors.primary[900],
-                color:colors.primary[100]
-
-            }
-        }    
+    
         }}
         margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
         linkDistance={function(e){return e.distance}}

@@ -1,7 +1,7 @@
 import { Box } from '@mui/system'
 import { Button, Grid, responsiveFontSizes, Typography } from '@mui/material'
 import PortIcon from './PortIcon'
-import Data from './Data'
+import Data from '../data/Data'
 import { tokens } from "../theme";
 import { useTheme } from '@mui/material'
 

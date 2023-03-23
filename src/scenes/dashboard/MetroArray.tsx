@@ -6,7 +6,7 @@ import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettin
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Header from "../../components/Header";
 
-const Metro = ({isDashboard = false}) => {
+const MetroArray = ({isDashboard = false}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const columns = [
@@ -116,4 +116,4 @@ const Metro = ({isDashboard = false}) => {
   );
 };
 
-export default Metro;
+export default MetroArray;

@@ -1,12 +1,11 @@
 import { Box, typography,useTheme } from "@mui/system";
 import { tokens} from "../../theme";
-// import Metro from "../grid";
 import {Grid} from "@mui/material";
 import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
 import Header from "../../components/Header"
-import NetworkChart from "../../components/NetworkChart";
+import NetworkChart from "./NetworkChart";
 import { Typography } from "@mui/material";
-import Metro from "../grid";
+import MetroArray from "./MetroArray";
 import ServerRack from "../../components/ServerRack";
 
 // import ArcChart from "../../components/test";
@@ -51,7 +50,7 @@ const Dashboard = () => {
     
       </Box>
       <Box display="felx" gridColumn="span 8" gridRow="span 2"  >
-        <Metro isDashboard = {true}/>
+        <MetroArray isDashboard = {true}/>
       </Box>
 
 
