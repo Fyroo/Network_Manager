@@ -1,21 +1,18 @@
 import { Box, typography,useTheme } from "@mui/system";
 import { tokens} from "../../theme";
-import {Grid} from "@mui/material";
-import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
 import Header from "../../components/Header"
 import NetworkChart from "./NetworkChart";
 import { Typography } from "@mui/material";
 import MetroArray from "./MetroArray";
 import ServerRack from "../../components/ServerRack";
 
-// import ArcChart from "../../components/test";
-const Dashboard = () => {
+const Metro = () => {
   const theme = useTheme();
   const colors =tokens(theme.palette.mode)
     return <Box m={"20px"}>
-      {/* <Box display={"flex"} justifyContent="space-between" alignItems={"center"}>
-      <Header title="DASHBOARD" subtitle="0"/>
-      </Box> */}
+      <Box display={"flex"} justifyContent="space-between" alignItems={"center"}>
+      <Header title="Metro" subtitle="Description"/>
+      </Box> 
       <Box
       
       display="grid"
@@ -58,4 +55,4 @@ const Dashboard = () => {
     </Box>
 
   };
-  export default Dashboard;
+  export default Metro;

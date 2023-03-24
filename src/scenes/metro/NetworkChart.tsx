@@ -30,11 +30,6 @@ const NetworkChart = ()=>{
                     } 
                 }
             },
-            legends:{
-                // text:{
-                //     fill: colors.grey[100]
-                // }
-            },
             tooltip:{
                 container:{
                     background:colors.primary[900],
@@ -49,7 +44,6 @@ const NetworkChart = ()=>{
         centeringStrength={4.1}
         repulsivity={100}
         iterations={300}
-        // nodeComponent = {AddAlarmOutlinedIcon}
         nodeSize={function(n){return n.size}}
         activeNodeSize={22}
         nodeColor={function(e){return e.color}}

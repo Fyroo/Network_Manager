@@ -1,11 +1,13 @@
 import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
-import MetroArray from "./scenes/dashboard/MetroArray";
-import Dashboard from "./scenes/dashboard";
+import Metro from "./scenes/metro";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
-import NetworkChart from "./scenes/dashboard/NetworkChart";
+import LSW from "./scenes/lsw";
+import Breakout from "./scenes/breakout";
+import Backhaul from "./scenes/backhaul";
+
 
 function App() {
   const {theme, toggleColorMode} = useMode();
@@ -19,9 +21,10 @@ function App() {
           <main className="content">
             <Topbar />
             <Routes>
-            <Route path="/" element={<Dashboard />}/>
-            <Route path="/metro" element={<MetroArray />} />
-            <Route path="/NetworkChart" element={<NetworkChart />} />
+            <Route path="/" element={<Metro />}/>
+            <Route path="/LSW" element={<LSW />} />
+            <Route path="/Breakout" element={<Breakout />} />
+            <Route path="/Backhaul" element={<Backhaul />} />
             </Routes>
           </main>
         </div>

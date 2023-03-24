@@ -4,7 +4,6 @@ import { tokens } from "../../theme";
 import { mockDataMetro } from "../../data/mockData";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Header from "../../components/Header";
 
 const MetroArray = ({isDashboard = false}) => {
   const theme = useTheme();
@@ -94,6 +93,10 @@ const MetroArray = ({isDashboard = false}) => {
           },
           "& .MuiDataGrid-root .MuiDataGrid-cell:focus": {
             outline:"none",
+          },
+          
+          "& .MuiDataGrid-root .MuiDataGrid-cell":{
+            border:"none"
           },
           "& .MuiDataGrid-row:nth-of-type(odd)": {
             outline:"none",
