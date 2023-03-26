@@ -157,6 +157,14 @@ const Sidebar = () => {
                             setSelected={setSelected}
                 ></Item>                
 </SubMenu>
+
+<Item
+              title="Metro WIDE VIEW"
+              to="/wide-view"
+              icon={<HomeOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
           </Box>
         </Menu>
       </ProSidebar>
