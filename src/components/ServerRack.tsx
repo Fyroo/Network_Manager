@@ -1,5 +1,5 @@
 import { Box } from '@mui/system'
-import { Button, Grid, responsiveFontSizes, Typography } from '@mui/material'
+import { Button, Grid, Typography } from '@mui/material'
 import PortIcon from './PortIcon'
 import Data from '../data/Data'
 import { tokens } from "../theme";
@@ -12,7 +12,7 @@ const ServerRack = () => {
   const colors = tokens(theme.palette.mode)
   function Port(props:any) {
     return(
-      <Grid item xs={4} alignItems={'center'}    spacing={0} >
+      <Grid item xs={4} alignItems={'center'}>
                   <Box  display={'flex'} alignItems={'center'} justifyContent={'center'}>
                   <Button style={{padding:'5'}}><PortIcon isActive = {props.state}  /></Button>
           </Box>

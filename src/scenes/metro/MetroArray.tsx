@@ -5,10 +5,16 @@ import { mockDataMetro } from "../../data/mockData";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
-const MetroArray = ({isDashboard = false}) => {
+
+const MetroArray = ({isDashboard = false, parentCallback}: { isDashboard?: boolean, parentCallback: (childData: any) => void }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const columns = [
+
+  function handleItemClick(item: number) {
+    parentCallback(item);
+  }
+
+  const columns:any = [
     {
       field: "name",
       headerName: "Name",
@@ -112,7 +118,7 @@ const MetroArray = ({isDashboard = false}) => {
         <DataGrid hideFooter 
         rows={mockDataMetro} 
         columns={columns}
-        
+        onRowClick={(params) => handleItemClick(params.row)}
         components={{ Toolbar: GridToolbar }} />
       </Box>
     </Box>

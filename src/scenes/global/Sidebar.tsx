@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
+import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
@@ -124,14 +124,39 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
-              title="Backhaul"
-              to="/Backhaul"
-              icon={<PublicIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
+<SubMenu
+              title="Backhaul"              
+              icon={<PublicIcon />}           
+>
+                <Item
+                            title="144 FO"
+                            to="/Backhaul"
+                            icon={<PublicIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                ></Item>
+                  <Item
+                            title="72 FO"
+                            to="/Backhaul"
+                            icon={<PublicIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                ></Item>
+                  <Item
+                            title="48 FO"
+                            to="/Backhaul"
+                            icon={<PublicIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                ></Item>
+                  <Item
+                            title="24 FO"
+                            to="/Backhaul"
+                            icon={<PublicIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                ></Item>                
+</SubMenu>
           </Box>
         </Menu>
       </ProSidebar>
