@@ -1,12 +1,12 @@
 import { Box, IconButton, useTheme } from "@mui/material";
-import { useContext } from "react";
+import { Component, useContext } from "react";
 import { ColorModeContext, tokens } from "../../theme";
 import InputBase from "@mui/material/InputBase";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 
-const Topbar = () => {
+const Topbar:React.FC = () => {
   // Retrieve the current theme object
   const theme = useTheme();
 
@@ -18,13 +18,15 @@ const Topbar = () => {
 
   return (
     // Render a box with flex display and space-between justification with 2 units of padding
-    <Box display="flex" justifyContent="space-between" p={2}>
+    <Box display="flex" justifyContent="space-between" p={2} pb={0}>
 
       {/* SEARCH BAR */}
+
+      
       <Box
         // Render a box with flex display, a background color based on the primary token color, and 3px of border radius
         display="flex"
-        backgroundColor={colors.primary[400]}
+        color={colors.primary[400]}
         borderRadius="3px"
       >
         {/* Render an input field with margin left and a flex grow of 1, and a placeholder text of "Search" */}

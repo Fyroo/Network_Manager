@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
+import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import PublicIcon from '@mui/icons-material/Public';
 
-
-const Item = ({ title, to, icon, selected, setSelected }) => {
+const Item = ({ title, to, icon, selected, setSelected }: { title: any; to: any; icon:any; selected:any; setSelected:any}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
@@ -52,14 +52,16 @@ const Sidebar = () => {
         },
       }}
     >
-      <ProSidebar collapsedWidth="35px" collapsed={isCollapsed}>
+      <ProSidebar 
+      collapsedWidth="35px" 
+      collapsed={isCollapsed}>
         <Menu iconShape="square">
           {/* LOGO AND MENU ICON */}
           <MenuItem
             onClick={() => setIsCollapsed(!isCollapsed)}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
             style={{
-              margin: "5px 0 5px 0",
+              margin: "10px 0 20px 0",
               marginLeft: 0,
               color: colors.grey[100],
             }}
@@ -69,9 +71,9 @@ const Sidebar = () => {
                 display="flex"
                 justifyContent="space-between"
                 alignItems="center"
-                ml="10px"
+                ml="15px"
               >
-                <Typography variant="h3" color={colors.grey[100]}>
+                <Typography variant="h4" color={colors.grey[100]}>
                   ADMINIS
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
@@ -94,7 +96,7 @@ const Sidebar = () => {
                   Nom Utilisateur
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
-                Niveau d'acces
+                  Niveau d'Access
                 </Typography>
               </Box>
             </Box>
@@ -102,13 +104,67 @@ const Sidebar = () => {
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
-              title="Dashboard"
+              title="Metro"
               to="/"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
+            <Item
+              title="LSW"
+              to="/LSW"
+              icon={<PublicIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+             <Item
+              title="Breakout"
+              to="/Breakout"
+              icon={<PublicIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+<SubMenu
+              title="Backhaul"              
+              icon={<PublicIcon />}           
+>
+                <Item
+                            title="144 FO"
+                            to="/Backhaul"
+                            icon={<PublicIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                ></Item>
+                  <Item
+                            title="72 FO"
+                            to="/Backhaul"
+                            icon={<PublicIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                ></Item>
+                  <Item
+                            title="48 FO"
+                            to="/Backhaul"
+                            icon={<PublicIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                ></Item>
+                  <Item
+                            title="24 FO"
+                            to="/Backhaul"
+                            icon={<PublicIcon />}
+                            selected={selected}
+                            setSelected={setSelected}
+                ></Item>                
+</SubMenu>
 
+<Item
+              title="Metro WIDE VIEW"
+              to="/wide-view"
+              icon={<HomeOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
           </Box>
         </Menu>
       </ProSidebar>
