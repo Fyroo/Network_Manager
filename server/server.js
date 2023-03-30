@@ -2,18 +2,19 @@ const express = require('express')
 const app = express()
 const mysql = require('mysql')
 const cors = require('cors')
+const DbAdmin = require('./DbAdmin')
+
 
 app.use(cors());
 app.use(express.json());
-
+const login = DbAdmin.info;
 const db =mysql.createConnection({
-    user: "Moutaa",
-    host: "localhost",
-    password: "nmdb2077@",
-    database: "networkmangerdata",
-    insecureAuth : true
+    user : login.user,
+    host: login.host,
+    password: login.password,
+    database: login.database,
+    insecureAuth : login.insecureAuth
 });
-
 
 app.get("/metro", (req,res) =>{
     db.query("SELECT * FROM metro", (err, result)=>{
