@@ -2,14 +2,14 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import TreeView from '@mui/lab/TreeView';
-import DataTest from './datatest';
 import TreeItem, { TreeItemProps, treeItemClasses } from '@mui/lab/TreeItem';
 import Typography from '@mui/material/Typography';
-import MailIcon from '@mui/icons-material/Mail';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import { SvgIconProps } from '@mui/material/SvgIcon';
 import RouterIcon from '@mui/icons-material/Router';
+import { useEffect, useState } from 'react'
+import axios from 'axios';
 
 
 
@@ -65,14 +65,8 @@ function TreeItemBP(props:any){
     <StyledTreeItem  nodeId={props.Id} labelText={props.name} labelIcon={RouterIcon}/>
   )
 }
-const TreeComp = DataTest.map((data)=> {
-  return(
-    <TreeItemBP 
-      key={data.id}
-      Id={data.nodeid}
-      name={data.name}
-    />
-  )})
+
+
 
 function StyledTreeItem(props: StyledTreeItemProps) {
   const {
@@ -115,6 +109,24 @@ function StyledTreeItem(props: StyledTreeItemProps) {
 }
 
 export default function GmailTreeView() {
+  const [lswList, setlswList] = useState([ {id: 5,nodeid:"5",name:"ASR54468517"}]);
+const getLSW = () =>{
+  axios.get("http://localhost:3001/lsw").then((response)=>{
+    setlswList(response.data)
+  });
+
+}
+  useEffect(() => {
+  getLSW();
+}, []);
+  const TreeComp = lswList.map((data)=> {
+    return(
+      <TreeItemBP 
+        key={data.id}
+        Id={data.nodeid}
+        name={data.name}
+      />
+    )})
   return (
    
       <TreeView
