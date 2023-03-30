@@ -5,12 +5,28 @@ import NetworkChart from "./NetworkChart";
 import { Typography } from "@mui/material";
 import MetroArray from "./MetroArray";
 import ServerRack from "../../components/ServerRack";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
 
 const Metro = () => {
+  
   const theme = useTheme();
   const colors =tokens(theme.palette.mode)
   const [routerName, setRouterName] = useState("No Router Selected");
+
+  const [metroList, setMetroList] = useState([]);
+  const getMetro = () =>{
+    axios.get("http://localhost:3001/metro").then((response)=>{
+    setMetroList(response.data)
+    });
+
+  }
+  useEffect(() => {
+    getMetro();
+  }, []);
+
+
   function callbackFunction(childData:any){
     console.log(childData.name);
     setRouterName(childData.name)
@@ -53,7 +69,7 @@ const Metro = () => {
     
       </Box>
       <Box display="felx" gridColumn="span 8" gridRow="span 2"  >
-        <MetroArray isDashboard = {true} parentCallback={callbackFunction} />
+        <MetroArray isDashboard = {true} parentCallback={callbackFunction} data={metroList} />
       </Box>
 
 

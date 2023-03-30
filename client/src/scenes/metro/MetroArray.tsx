@@ -6,7 +6,7 @@ import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettin
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 
-const MetroArray = ({isDashboard = false, parentCallback}: { isDashboard?: boolean, parentCallback: (childData: any) => void }) => {
+const MetroArray = ({data,isDashboard = false, parentCallback}: { data:any,isDashboard?: boolean, parentCallback: (childData: any) => void }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -23,19 +23,19 @@ const MetroArray = ({isDashboard = false, parentCallback}: { isDashboard?: boole
       minWidth: 100,
     },
     {
-      field: "IP",
+      field: "ip",
       headerName: "Address",
       flex:1,
       minWidth: 100,
     },
     {
-      field: "Model",
+      field: "model",
       headerName: "Model",
       flex: 1,
       minWidth: 100,
     },
     {
-      field: "access",
+      field: "acess",
       headerName: "Access Level",
       flex: 1,
       headerAlign:"center",
@@ -116,7 +116,7 @@ const MetroArray = ({isDashboard = false, parentCallback}: { isDashboard?: boole
         }}
       >
         <DataGrid hideFooter 
-        rows={mockDataMetro} 
+        rows={data} 
         columns={columns}
         onRowClick={(params) => handleItemClick(params.row)}
         components={{ Toolbar: GridToolbar }} />
