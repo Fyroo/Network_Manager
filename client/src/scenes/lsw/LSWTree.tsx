@@ -59,56 +59,61 @@ const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
     },
   },
 }));
-function TreeItemBP(props:any){
-
-  return(
-    <StyledTreeItem  nodeId={props.Id} labelText={props.name} labelIcon={RouterIcon}/>
-  )
-}
 
 
+ function GmailTreeView({parentCallback}:{parentCallback: (childData: any) => void }) {
+  function TreeItemBP(props:any){
 
-function StyledTreeItem(props: StyledTreeItemProps) {
-  const {
-    bgColor,
-    color,
-    labelIcon: LabelIcon,
-    labelInfo,
-    labelText,
-    ...other
-  } = props; 
-
-
-  return (
-    <StyledTreeItemRoot
-      label={
-        <Box sx={{ display: 'flex', alignItems: 'left', p: 0.5, pr: 0,
-         }}>
-          <Box component={LabelIcon} color="inherit" sx={{ mr: 1 }} />
-          <Typography variant="body2" sx={{ fontWeight: 'inherit', flexGrow: 1 }}>
-            {labelText}
-          </Typography>
-          <Typography variant="caption" color="inherit">
-            {labelInfo}
-          </Typography>
-        </Box>
-      }
-      style={{
-        '--tree-view-color': color,
-        '--tree-view-bg-color': bgColor,
-      }}
-      {...other}
-      sx={{
-        "& .MuiTreeItem-content": {
-          paddingLeft:'0',
-          
+    return(
+      <StyledTreeItem  nodeId={props.Id} labelText={props.name} labelIcon={RouterIcon} />
+    )
+  }
+  
+  
+  
+  function StyledTreeItem(props: StyledTreeItemProps) {
+    const {
+      bgColor,
+      color,
+      labelIcon: LabelIcon,
+      labelInfo,
+      labelText,
+      ...other
+    } = props; 
+    function handleItemClick(item:any) {
+      parentCallback(item);
+    }
+  
+  
+    return (
+      <StyledTreeItemRoot
+        label={
+          <Box sx={{ display: 'flex', alignItems: 'left', p: 0.5, pr: 0,}}
+  
+           onClick={() => handleItemClick(props)}>
+            <Box component={LabelIcon} color="inherit" sx={{ mr: 1 }} />
+            <Typography variant="body2" sx={{ fontWeight: 'inherit', flexGrow: 1 }}>
+              {labelText}
+            </Typography>
+            <Typography variant="caption" color="inherit">
+              {labelInfo}
+            </Typography>
+          </Box>
         }
-      }}
-    />
-  );
-}
-
-export default function GmailTreeView() {
+        style={{
+          '--tree-view-color': color,
+          '--tree-view-bg-color': bgColor,
+        }}
+        {...other}
+        sx={{
+          "& .MuiTreeItem-content": {
+            paddingLeft:'0',
+            
+          }
+        }}
+      />
+    );
+  }
   const [lswList, setlswList] = useState([ {id: 5,nodeid:"5",name:"ASR54468517"}]);
 const getLSW = () =>{
   axios.get("http://localhost:3001/lsw").then((response)=>{
@@ -119,6 +124,9 @@ const getLSW = () =>{
   useEffect(() => {
   getLSW();
 }, []);
+
+
+
   const TreeComp = lswList.map((data)=> {
     return(
       <TreeItemBP 
@@ -135,7 +143,8 @@ const getLSW = () =>{
       defaultCollapseIcon={<ArrowDropDownIcon />}
       defaultExpandIcon={<ArrowRightIcon />}
       defaultEndIcon={<div style={{ width: 24 }} />}
-      sx={{ height: 264, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
+      sx={{ height: '77vh', flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
+      
     >
       {TreeComp}
         {/* <StyledTreeItem
@@ -151,3 +160,4 @@ const getLSW = () =>{
     
   );
 }
+export default GmailTreeView

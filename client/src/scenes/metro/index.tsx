@@ -2,12 +2,13 @@ import { Box, typography,useTheme } from "@mui/system";
 import { tokens} from "../../theme";
 import Header from "../../components/Header"
 import NetworkChart from "./NetworkChart";
-import { Typography } from "@mui/material";
+import { IconButton, Typography } from "@mui/material";
 import MetroArray from "./MetroArray";
 import ServerRack from "../../components/ServerRack";
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 const Metro = () => {
   
@@ -40,7 +41,7 @@ const Metro = () => {
       display="grid"
       gridTemplateColumns="repeat(12, 1fr)"
       gridColumn={12}
-      gridAutoRows="150px"
+      gridAutoRows="14vh"
       gap="23px">
       
       <Box gridColumn="span 8" gridRow="span 3" style={{ backgroundColor:colors.blueAccent[500]}}>
@@ -56,13 +57,27 @@ const Metro = () => {
           
       </Box>  
       <Box display="felx" gridColumn="span 4" gridRow="span 4"  alignContent="center">
-      <Box pt={"10px"}  sx={{backgroundColor:colors.blueAccent[800]}}
-        justifyContent="space-between" alignContent={"center"}>
-        <Typography p= "10px 25px 15px" variant="h5" fontWeight="600" color={colors.grey[100]}>
+      <Box display={"flex"}pr={'5px'} pt={"10px"} flexDirection={'row'} sx={{backgroundColor:colors.blueAccent[800]}}
+        justifyContent="space-between" alignContent={"center"} >
+          
+          <Typography p= "10px 25px 15px" variant="h5" fontWeight="600" color={colors.grey[100]}>
           {routerName}
         </Typography>
+          
+        <Box   justifyContent="space-between">
+        
+        <IconButton aria-label="delete" sx={{color:colors.grey[400]}}>
+          <EditIcon/>
+        </IconButton>
+        <IconButton aria-label="edit" sx={{color:colors.redAccent[400]}}>
+          <DeleteIcon/>
+        </IconButton>
+
         </Box>
-        <Box p= "5px 20px 25px" 
+
+        </Box>
+        
+        <Box p= "5px 20px 25px" minHeight={'40.9vh'}
         sx={{backgroundColor:colors.blueAccent[500]}}>
           <ServerRack/>
         </Box>

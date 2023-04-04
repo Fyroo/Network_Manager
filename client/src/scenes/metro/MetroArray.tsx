@@ -68,11 +68,11 @@ const MetroArray = ({data,isDashboard = false, parentCallback}: { data:any,isDas
   ];
 
   return (
-    <Box m={isDashboard ? "0px" : "20px"}>
-      {/* <Header title="" subtitle="" /> */}
+
+      
       <Box
-        m={isDashboard ? "0 0 0 0" : "40px 0 0 0"}
-        height={isDashboard ? "30vh" : "75vh"}
+        m={ "0 0 0 0" }
+        height={"30vh"}
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -121,7 +121,7 @@ const MetroArray = ({data,isDashboard = false, parentCallback}: { data:any,isDas
         onRowClick={(params) => handleItemClick(params.row)}
         components={{ Toolbar: GridToolbar }} />
       </Box>
-    </Box>
+    
   );
 };
 
