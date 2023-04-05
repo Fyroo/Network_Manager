@@ -3,6 +3,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Route, Routes } from "react-router-dom";
 import Metro from "./scenes/metro";
 import WideView from "./scenes/wide-view";
+import NetworkChart from "./scenes/metro/NetworkChart";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
 import LSW from "./scenes/lsw";
@@ -24,7 +25,7 @@ function App() {
             <Routes>
             <Route path="/" element={<Metro />}/>
             <Route path="/LSW" element={<LSW />} />
-            <Route path="/wide-view" element={<WideView />} />
+            <Route path="/test" element={<NetworkChart />} />
             <Route path="/Breakout" element={<Breakout />} />
             <Route path="/Backhaul" element={<Backhaul />} />
             </Routes>

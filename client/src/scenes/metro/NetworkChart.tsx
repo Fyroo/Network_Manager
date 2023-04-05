@@ -42,8 +42,8 @@ const NetworkChart = ()=>{
         margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
         linkDistance={function(e){return e.distance}}
         centeringStrength={4.1}
-        repulsivity={100}
-        iterations={300}
+        repulsivity={1}
+        iterations={100}
         nodeSize={function(n){return n.size}}
         activeNodeSize={22}
         nodeColor={function(e){return e.color}}

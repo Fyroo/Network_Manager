@@ -107,6 +107,7 @@ const Sidebar = () => {
               title="Metro"
               to="/"
               icon={<HomeOutlinedIcon />}
+              
               selected={selected}
               setSelected={setSelected}
             />
@@ -159,8 +160,8 @@ const Sidebar = () => {
 </SubMenu>
 
 <Item
-              title="Metro WIDE VIEW"
-              to="/wide-view"
+              title="test"
+              to="/test"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
