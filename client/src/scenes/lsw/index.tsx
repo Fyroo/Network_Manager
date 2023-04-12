@@ -6,7 +6,7 @@ import { Typography, IconButton } from '@mui/material'
 import { useEffect, useState } from 'react'
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { scaleBand } from 'd3'
+
 
 const LSW = () => {
   const [lswName, setLswName] = useState("No Router Selected");
@@ -21,7 +21,7 @@ const LSW = () => {
   return (
 <Box m={"20px"}>
       <Box display={"flex"} justifyContent="space-between" alignItems={"center"}>
-      <Header title="LSW" subtitle="Description"/>
+      <Header title="LSW" subtitle="Description" addlink='' withbtn={false}/>
       </Box> 
       <Box
       

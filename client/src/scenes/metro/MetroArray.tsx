@@ -6,7 +6,7 @@ import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettin
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 
-const MetroArray = ({data,isDashboard = false, parentCallback}: { data:any,isDashboard?: boolean, parentCallback: (childData: any) => void }) => {
+const MetroArray = ({data, parentCallback}: { data:any, parentCallback: (childData: any) => void }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -72,7 +72,7 @@ const MetroArray = ({data,isDashboard = false, parentCallback}: { data:any,isDas
       
       <Box
         m={ "0 0 0 0" }
-        height={"30vh"}
+        height={"33vh"}
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",

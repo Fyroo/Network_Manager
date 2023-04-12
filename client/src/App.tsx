@@ -9,6 +9,8 @@ import Sidebar from "./scenes/global/Sidebar";
 import LSW from "./scenes/lsw";
 import Breakout from "./scenes/breakout";
 import Backhaul from "./scenes/backhaul";
+import MetroAdd from "./scenes/metro/MetroAdd";
+import MetroEdit from "./scenes/metro/MetroEdit";
 
 
 function App() {
@@ -25,7 +27,9 @@ function App() {
             <Routes>
             <Route path="/" element={<Metro />}/>
             <Route path="/LSW" element={<LSW />} />
-            <Route path="/test" element={<NetworkChart />} />
+            <Route path="/test" element={<MetroAdd />} />
+            <Route path="/Metro/add" element={<MetroAdd />} />
+            <Route path="/Metro/edit" element={<MetroEdit/>} />
             <Route path="/Breakout" element={<Breakout />} />
             <Route path="/Backhaul" element={<Backhaul />} />
             </Routes>
