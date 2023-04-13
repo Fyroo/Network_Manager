@@ -15,11 +15,12 @@ const Metro = () => {
 
   const theme = useTheme();
   const colors =tokens(theme.palette.mode)
+  const [selectedMetro, setSelectedMetro] = useState([]);
   const [routerName, setRouterName] = useState("No Router Selected");
   const [routerIp, setRouterIP] = useState("No Router Selected");
   const [routerModel, setRouterModel] = useState("No Router Selected");
-
   const [metroList, setMetroList] = useState([]);
+
   const getMetro = () =>{
     axios.get("http://localhost:3001/metro").then((response)=>{
     setMetroList(response.data)
@@ -35,10 +36,11 @@ const Metro = () => {
   };
 
   function callbackFunction(childData:any){
-    console.log(childData.ip);
     setRouterName(childData.name);
     setRouterIP(childData.ip);
     setRouterModel(childData.model)
+    setSelectedMetro(childData)
+    console.log(routerName)
     
   };
   function handelMetroDelete(){
@@ -104,7 +106,7 @@ const Metro = () => {
             
             <Box pt={"5px"} minHeight={'40.9vh'}
             sx={{backgroundColor:colors.blueAccent[500]}}>
-              <MetroPorts parentCallback={getPort}></MetroPorts>
+              <MetroPorts parentCallback={getPort} selectedMetro={selectedMetro}></MetroPorts>
             </Box>
             
         

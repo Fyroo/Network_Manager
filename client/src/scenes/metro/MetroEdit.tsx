@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Box, useTheme } from "@mui/system";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
-import { IconButton, Typography, TextField, Button } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
-import MetroPorts from "./MetroPorts";
-import { Link, useLocation } from "react-router-dom";
+import { Typography, TextField, Button } from "@mui/material";
+
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 const MetroEdit = () => {

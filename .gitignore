@@ -24,3 +24,4 @@ package-lock.json
 *.sln
 *.sw?
 *DbAdmin.js
+client/src/scenes/metro/adad.tsx

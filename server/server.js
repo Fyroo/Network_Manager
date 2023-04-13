@@ -88,6 +88,37 @@ app.delete("/deletemetro/:name",(req,res)=>{
         }
     })
 })
+app.get("/blocks/:metroid", (req,res) => {
+    const metroid = req.params.metroid
+    db.query("SELECT * FROM blocks WHERE metroid=?", metroid, (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(result);
+        }
+    });
+});
+
+app.post("/createblock", (req, res) => {
+    const name = req.body.name;
+    const metroid = req.body.metroid;
+    const state = req.body.state;
+    const slot = req.body.slot;
+
+    db.query(
+        "INSERT INTO blocks (name, metroid, state, slot) VALUES (?,?,?,?)",
+        [name, metroid, state, slot],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Block created successfully");
+            }
+        }
+    );
+});
+
+
 
 app.listen(3001, ()=>{
     console.log("  Server running on port 3001 \n  ➜  Local:   http://localhost:3001/ ");

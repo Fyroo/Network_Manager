@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, useTheme } from "@mui/system";
 import { tokens } from "../../theme";
 import axios from "axios";
