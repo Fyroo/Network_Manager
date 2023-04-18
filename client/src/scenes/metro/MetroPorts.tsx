@@ -1,100 +1,108 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useTheme } from "@mui/system";
-import PortIcon from "../../components/PortIcon";
 import { tokens } from "../../theme";
 import info from "./modelinfo";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import PortsMap from "./PortsMap";
 
 const MetroPorts = ({ parentCallback ,selectedMetro}: { selectedMetro:any;parentCallback: (childData: any) => void }) => {
   const theme = useTheme();
   const [blocksList, setBlocksList] = useState<any[]>([]);
   const colors = tokens(theme.palette.mode);
-
-  const getBlocks = async () => {
+  const [isDataLoaded, setIsDataLoaded] = useState(false); 
+  const [blockState, setBlockState] = useState({});
+  // State variable to track data loading status
+  function getPort(childData:any){
+    parentCallback(childData);
+  };
+  const enableBlock = async (blockId: number) => {
     try {
-      const response = await axios.get(`http://localhost:3001/blocks/${selectedMetro.id}`);
-      setBlocksList(response.data);
-      console.log(blocksList);
+      await axios.put(`http://localhost:3001/updateblocks/${blockId}`, { state: 1 });
+      console.log('Block state updated');
+      setBlockState({ ...blockState, [blockId]: 1 });
     } catch (error) {
       console.error(error);
     }
   };
-
-useEffect(() => {
-  getBlocks();
-}, [selectedMetro]);
-
-useEffect(() => {
-  check();
-}, [blocksList]);
-
-  const createBlocks = (props:any,i:any) => {
-     axios.post("http://localhost:3001/createblock", { name: `${props.name}-${i}`, metroid: props.id, state: false ,slot:i });
-    console.log('yes');
-
+  const getBlocks = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3001/blocks/${selectedMetro.id}`);
+      setBlocksList(response.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
-  // const handleItemClick = (item: any) => {
-  //   parentCallback(item);
-  // };
-  
-  function Port({ name, state }: any) {
-    return (
-      <Box>
-        <Box display={'flex'} alignItems={'center'} justifyContent={'center'}>
-          <Button style={{ padding: '5' }}>
-            <PortIcon isActive={true} />
-          </Button>
-        </Box>
-  
-        <Box display={'flex'} alignItems={'center'} justifyContent={'center'}>
-          <Typography color={colors.primary[900]} sx={{ fontSize: { sm: 11, xs: 15 } }}>
-            {name}
-          </Typography>
-        </Box>
-      </Box>
-    );
-  }
+  const createBlocks = async (props:any,i:any,length:any) => {
+    await axios.post("http://localhost:3001/createblock", 
+    { name: `${props.name}-${i}`, metroid: props.id, state: false ,slot:i,length:length});
+   console.log('Block Created');
+ };
+
+  useEffect(() => {
+    getBlocks();
+  }, [selectedMetro]);
+
+  useEffect(() => {
+    check();
+  }, [blocksList, blockState]);
+
+  useEffect(() => {
+    getBlocks();
+    
+  }, [blockState]);
 
   const dataComp = blocksList.map((data) => {
-    if (data.state) {
-      return (
-        <Port key={data.id} state={data.state} title={data.name} />
+    if (data.state === 1) {
+      return (<PortsMap block={data} parentCallback={getPort}/>
       );
     } else {
       return (
-        <Box key={data.id}>
+        <Box flexDirection={'column'} key={data.id}>
           <Typography>{data.name}</Typography>
+          <Button 
+          onClick={() => handleEnableClick(data)}>enable</Button>
         </Box>
       );
     }
   });
 
-  function check(){
-    let modelInfo = info.find((model: any) => 
-    model.modelname === selectedMetro.model);
-    if(modelInfo){
-      console.log(blocksList.length)
-      if ((blocksList.length) === 0) {
-        console.log('no blocks')
-        for (let i = 1; i <= modelInfo.blocksnumber; i++) {
-          createBlocks(selectedMetro, i);
-         }
-      }else{
-        return;
-      }
-      }else{
-        return 
-    }
 
+    async function handleEnableClick(props:any) {   
+    await enableBlock(props.id);
+  };
+
+
+  async function check() {
+    let modelInfo = info.find((model: any) => model.modelname === selectedMetro.model);
+    if (modelInfo) {
+      console.log(blocksList.length);
+      if (blocksList.length === 0) {
+        console.log('No blocks');
+        for (let i = 0; i < modelInfo.blocksnumber; i++) {
+          await createBlocks(selectedMetro, i,modelInfo.blockorder[i]);
+        }
+        await getBlocks();
+        setIsDataLoaded(true); // Set data loading status to true
+      } else {
+        setIsDataLoaded(true); // Set data loading status to true
+      }
+    } else {
+      setIsDataLoaded(false); // Set data loading status to true
+    }
   }
   
   return (
     <Box display="flex" height={'77vh'} flexDirection="column" 
     style={{ overflow: "hidden", overflowY: "scroll" }}>
-  {dataComp}
+      {isDataLoaded ? ( // Conditionally render JSX based on data loading status
+        <Box>{dataComp}</Box>    ) : (
+          <Box display="flex" justifyContent="center" alignItems="center" height="100%">
+            <Typography>Loading data...</Typography>
+          </Box>
+        )}
     </Box>
-  );
-};
-
-export default MetroPorts;
+    );
+  };
+  
+  export default MetroPorts;

@@ -15,7 +15,7 @@ const info =[
     id: 3,
     blocksnumber: 7,
     blockorder:[6,8,8,8,8,8,8],
-    modelname:"ASR903"
+    modelname:"ASR 903"
 },
 {
     id: 4,

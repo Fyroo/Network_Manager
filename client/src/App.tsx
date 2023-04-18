@@ -11,6 +11,8 @@ import Breakout from "./scenes/breakout";
 import Backhaul from "./scenes/backhaul";
 import MetroAdd from "./scenes/metro/MetroAdd";
 import MetroEdit from "./scenes/metro/MetroEdit";
+import LSWAdd from "./scenes/lsw/LSWAdd";
+import LSWEdit from "./scenes/lsw/LSWEdit";
 
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
             <Route path="/test" element={<MetroAdd />} />
             <Route path="/Metro/add" element={<MetroAdd />} />
             <Route path="/Metro/edit" element={<MetroEdit/>} />
+            <Route path="/LSW/add" element={<LSWAdd/>} />
+            <Route path="/LSW/edit" element={<LSWEdit/>} />
             <Route path="/Breakout" element={<Breakout />} />
             <Route path="/Backhaul" element={<Backhaul />} />
             </Routes>

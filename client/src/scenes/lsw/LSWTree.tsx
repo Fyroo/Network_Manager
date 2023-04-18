@@ -10,6 +10,7 @@ import { SvgIconProps } from '@mui/material/SvgIcon';
 import RouterIcon from '@mui/icons-material/Router';
 import { useEffect, useState } from 'react'
 import axios from 'axios';
+import { select } from 'd3';
 
 
 
@@ -62,41 +63,59 @@ const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
 
 
  function GmailTreeView({parentCallback}:{parentCallback: (childData: any) => void }) {
+  function handleItemClick(item:any) {
+    parentCallback(item);
+  }
   function TreeItemBP(props:any){
 
     return(
-      <StyledTreeItem  nodeId={props.Id} labelText={props.name} labelIcon={RouterIcon} />
+      <StyledTreeItem  nodeId={props.id.toString()} labelText={props.name} labelIcon={RouterIcon}
+      key={props.id}
+      name={props.name}
+      model={props.model}
+      uplink={props.uplink} 
+      id={props.id}/>
     )
   }
   
   
-  
-  function StyledTreeItem(props: StyledTreeItemProps) {
+  type StyledTreeItemProps = TreeItemProps & {
+    bgColor?: string;
+    color?: string;
+    labelIcon: React.ElementType<SvgIconProps>;
+    labelInfo?: string;
+    labelText: string;
+    name: string; 
+    model: string; 
+    uplink: string;
+    id:any;
+  };
+
+  function StyledTreeItem(props: StyledTreeItemProps,) {
+    
     const {
       bgColor,
       color,
       labelIcon: LabelIcon,
       labelInfo,
       labelText,
+      id,
       ...other
     } = props; 
-    function handleItemClick(item:any) {
-      parentCallback(item);
-    }
+
+
   
   
     return (
-      <StyledTreeItemRoot
+      <StyledTreeItemRoot  onSelect={()=>handleItemClick(props)}
+      
+
         label={
           <Box sx={{ display: 'flex', alignItems: 'left', p: 0.5, pr: 0,}}
-  
-           onClick={() => handleItemClick(props)}>
+           >
             <Box component={LabelIcon} color="inherit" sx={{ mr: 1 }} />
-            <Typography variant="body2" sx={{ fontWeight: 'inherit', flexGrow: 1 }}>
-              {labelText}
-            </Typography>
-            <Typography variant="caption" color="inherit">
-              {labelInfo}
+            <Typography variant="body2" sx={{ fontWeight: 'inherit', flexGrow: 1 }}
+            onClick={()=>{handleItemClick(props)}}>  {labelText}
             </Typography>
           </Box>
         }
@@ -114,7 +133,7 @@ const StyledTreeItemRoot = styled(TreeItem)(({ theme }) => ({
       />
     );
   }
-  const [lswList, setlswList] = useState([ {id: 5,nodeid:"5",name:"ASR54468517"}]);
+  const [lswList, setlswList] = useState([ {id:0,name:"ERROR",model:"",uplink:""}]);
 const getLSW = () =>{
   axios.get("http://localhost:3001/lsw").then((response)=>{
     setlswList(response.data)
@@ -131,8 +150,11 @@ const getLSW = () =>{
     return(
       <TreeItemBP 
         key={data.id}
-        Id={data.nodeid}
+        id={data.id}
         name={data.name}
+        model={data.model}
+        uplink={data.uplink}
+      
       />
     )})
   return (
@@ -144,7 +166,7 @@ const getLSW = () =>{
       defaultExpandIcon={<ArrowRightIcon />}
       defaultEndIcon={<div style={{ width: 24 }} />}
       sx={{ height: '77vh', flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
-      
+      onNodeFocus={()=>(console.log())}
     >
       {TreeComp}
         {/* <StyledTreeItem
