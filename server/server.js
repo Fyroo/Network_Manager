@@ -129,6 +129,7 @@ app.get("/ports/:blockid", (req,res) => {
         }
     });
 });
+
 app.get("/port/:id", (req,res) => {
     const id = req.params.id
     db.query("SELECT * FROM ports WHERE id=?", id, (err, result) => {
@@ -139,6 +140,7 @@ app.get("/port/:id", (req,res) => {
         }
     });
 });
+
 app.post("/createport", (req, res) => {
     
     const blockid = req.body.blockid;
@@ -220,7 +222,26 @@ app.delete("/deleteLSW/:id",(req,res)=>{
 })
 
 
+app.put("/updateport/:id", (req, res) => { // Update the URL parameter to ':id'
+    const id = req.params.id; // Retrieve 'id' from URL parameters
+    const address = req.body.address;
+    const affport = req.body.affport;
+    const breakout = req.body.breakout;
+    const opthead = req.body.opthead;
+    const observ= req.body.observ;
 
+    db.query(
+        "UPDATE ports SET address=?, affport=?, breakout=?, opthead=?, observ=? WHERE id=?",
+        [address, affport,breakout,opthead,observ,id],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Port updated successfully");
+            }
+        }
+    );
+});
 
 
 

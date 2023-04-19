@@ -8,9 +8,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import MetroPorts from "./MetroPorts";
+import BlocksMap from "./BlocksMap";
 import { Link } from "react-router-dom";
 import EditPortField from "./EditPortField";
+import SaveIcon from '@mui/icons-material/Save';
 
 const Metro = () => {
 
@@ -115,7 +116,7 @@ const Metro = () => {
             
             <Box pt={"5px"} minHeight={'40.9vh'}
             sx={{backgroundColor:colors.blueAccent[500]}}>
-              <MetroPorts parentCallback={getPort} selectedMetro={selectedMetro}></MetroPorts>
+              <BlocksMap parentCallback={getPort} selectedMetro={selectedMetro}></BlocksMap>
             </Box>
             
         
@@ -130,10 +131,17 @@ const Metro = () => {
               
             <Box   justifyContent="space-between">
 
-            <IconButton aria-label="delete" sx={{color:colors.grey[200]}}
-            disabled={portAddress === 'No Port Selected' ? true:false}
+            <IconButton aria-label="save" sx={{color:colors.grey[200]}}
+            disabled={(portAddress === 'No Port Selected') || (!isEditing) ? true:false}
+            onClick={()=>setIsEditing(false)}>
+              <SaveIcon/>
+            </IconButton>
+
+            <IconButton aria-label="edit" sx={{color:colors.grey[200]}}
+            disabled={(portAddress === 'No Port Selected') || (isEditing)? true:false}
             onClick={()=>setIsEditing(true)}>
               <EditIcon/>
+              
             </IconButton>
            
 
@@ -141,7 +149,14 @@ const Metro = () => {
 
             </Box>
             <Box m={'3px'}>
-            <EditPortField isEditing={isEditing} portId={portId}/>
+            {portAddress != 'No Port Selected' ? (
+                <EditPortField isEditing={isEditing} portId={portId} />
+            ) : (
+                
+                    null
+                
+            )}
+            
             </Box>
             
           </Box>

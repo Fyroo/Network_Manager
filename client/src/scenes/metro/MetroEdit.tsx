@@ -29,8 +29,6 @@ const MetroEdit = () => {
 
   useEffect(() => {
     setRouterName(location.state.routerName);
-    setNewIp(location.state.routerIp);
-    setNewModel(location.state.routerModel);
   }, []);
 
   return (
@@ -61,7 +59,7 @@ const MetroEdit = () => {
           <TextField
             variant="outlined"
             fullWidth
-            defaultValue={newIp}
+            defaultValue={location.state.routerIp}
             onChange={(event) => {
               setNewIp(event.target.value);
             }}
@@ -79,7 +77,7 @@ const MetroEdit = () => {
           <TextField
             variant="outlined"
             fullWidth
-            defaultValue={newModel}
+            defaultValue={location.state.routerModel}
             onChange={(event) => {
               setNewModel(event.target.value);
             }}

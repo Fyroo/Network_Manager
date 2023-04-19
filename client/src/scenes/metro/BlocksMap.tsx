@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import PortsMap from "./PortsMap";
 
-const MetroPorts = ({ parentCallback ,selectedMetro}: { selectedMetro:any;parentCallback: (childData: any) => void }) => {
+const BlocksMap = ({ parentCallback ,selectedMetro}: { selectedMetro:any;parentCallback: (childData: any) => void }) => {
   const theme = useTheme();
   const [blocksList, setBlocksList] = useState<any[]>([]);
   const colors = tokens(theme.palette.mode);
@@ -54,7 +54,7 @@ const MetroPorts = ({ parentCallback ,selectedMetro}: { selectedMetro:any;parent
 
   const dataComp = blocksList.map((data) => {
     if (data.state === 1) {
-      return (<PortsMap block={data} parentCallback={getPort}/>
+      return (<PortsMap key={data.id} block={data} parentCallback={getPort}/>
       );
     } else {
       return (
@@ -76,9 +76,8 @@ const MetroPorts = ({ parentCallback ,selectedMetro}: { selectedMetro:any;parent
   async function check() {
     let modelInfo = info.find((model: any) => model.modelname === selectedMetro.model);
     if (modelInfo) {
-      console.log(blocksList.length);
       if (blocksList.length === 0) {
-        console.log('No blocks');
+        console.log('No blocks Found, Creating Blocks...');
         for (let i = 0; i < modelInfo.blocksnumber; i++) {
           await createBlocks(selectedMetro, i,modelInfo.blockorder[i]);
         }
@@ -105,4 +104,4 @@ const MetroPorts = ({ parentCallback ,selectedMetro}: { selectedMetro:any;parent
     );
   };
   
-  export default MetroPorts;
+  export default BlocksMap;

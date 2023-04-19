@@ -13,27 +13,19 @@ const PortsMap = ({ block, parentCallback }: { parentCallback: (childData: any) 
     const checkCalledRef = useRef(false); 
 
     useEffect(() => {
-        const fetchData = async () => {
-            await getPorts();
-            console.log(portList);
-        }
-        fetchData();
+             getPorts();
     }, [block]);
 
-    useEffect(() => {
-        if (!checkCalledRef.current) { 
-            check();
-            checkCalledRef.current = true;
-        }
-    }, [portList]);
-
-    const getPorts = async () => {
-        try {
-            const response = await axios.get(`http://localhost:3001/ports/${block.id}`);
+    const getPorts =  () => {
+        axios.get(`http://localhost:3001/ports/${block.id}`).then((response)=>{
             setPortList(response.data);
-        } catch (error) {
-            console.error(error);
-        }
+            if (!checkCalledRef.current) { 
+                check((response.data),block);
+                checkCalledRef.current = true;
+            }
+            });
+
+
     };
 
     const createPort = async (key: any, i: any) => {
@@ -42,19 +34,22 @@ const PortsMap = ({ block, parentCallback }: { parentCallback: (childData: any) 
         console.log('Port Created');
     };
 
-    async function check() {
-        if (portList.length === 0) {
+    async function check(props:any,block:any) {
+        if (props.length === 0) {
+            console.log('No Ports Found, Creating Ports..');
             for (let i = 0; i < block.length; i++) { 
                 await createPort(block.id, i);
             }
             await getPorts();
             setIsDataLoaded(true);
         } else {
+            await getPorts();
             setIsDataLoaded(true); 
         }
     }
 
     const dataPort = portList.map((data) => {
+        
         return <Port
             key={data.id}
             ID={data.id}
