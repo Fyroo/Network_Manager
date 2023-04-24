@@ -43,7 +43,7 @@ const MetroArray = ({data, parentCallback}: { data:any, parentCallback: (childDa
       renderCell: (params: GridCellParams) => {
         const access = params.value as string;
         return (
-          <Box
+          <Box style={{ opacity: 0, transition: 'opacity 0.5s ease-in' }}
             width="60%"
             m="0 auto"
             p="5px"

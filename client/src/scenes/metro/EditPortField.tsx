@@ -52,7 +52,7 @@ function handelSaveClick(){
         }
     };
   return (
-    <Box>
+    <Box display="flex" justifyContent="center" alignItems="center" height="100%">
     {isDataLoaded ? ( // Conditionally render JSX based on data loading status
     <Box>
     <Box>
@@ -184,15 +184,13 @@ function handelSaveClick(){
                 }}
               />
             </Box>
-            <Box sx={{ mt: "24px" }}>
-          <Button variant="contained" color="primary" onClick={handelSaveClick}>
+            <Box sx={{ mt: "20px" }}>
+          {/* <Button variant="contained" color="primary" onClick={handelSaveClick}>
             Save
-          </Button>
+          </Button> */}
         </Box>
     </Box>   ) : (
-      <Box display="flex" justifyContent="center" alignItems="center" height="100%">
-        <Typography>Loading data...</Typography>
-      </Box>
+      null
     )}
 </Box>
 

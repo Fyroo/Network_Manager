@@ -92,7 +92,7 @@ const BlocksMap = ({ parentCallback ,selectedMetro}: { selectedMetro:any;parentC
   }
   
   return (
-    <Box display="flex" height={'77vh'} flexDirection="column" 
+    <Box display="flex" height="34vh" flexDirection="column" 
     style={{ overflow: "hidden", overflowY: "scroll" }}>
       {isDataLoaded ? ( // Conditionally render JSX based on data loading status
         <Box>{dataComp}</Box>    ) : (
