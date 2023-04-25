@@ -1,8 +1,9 @@
 import { Box,useTheme } from "@mui/system";
+import { Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import { tokens} from "../../theme";
 import Header from "../../components/Header"
 import NetworkChart from "./NetworkChart";
-import {IconButton, Typography } from "@mui/material";
+import {Button, IconButton, Typography } from "@mui/material";
 import MetroArray from "./MetroArray";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -17,6 +18,7 @@ import { animated, useSpring } from '@react-spring/web';
   const Metro = () => {
   const theme = useTheme();
   const colors =tokens(theme.palette.mode)
+  const [open, setOpen] = useState(false);
   const [selectedMetro, setSelectedMetro] = useState([]);
   const [portAddress, setPortAddress] = useState("No Port Selected");
   const [portId, setPortId] = useState();
@@ -25,7 +27,53 @@ import { animated, useSpring } from '@react-spring/web';
   const [routerIp, setRouterIP] = useState("");
   const [routerModel, setRouterModel] = useState("No Router Selected");
   const [metroList, setMetroList] = useState([]);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
+  const ConfirmBox= ()=>{
+    const dialogStyles = {
+      backgroundColor: "#fff",
+      boxShadow: "0px 3px 5px rgba(0, 0, 0, 0.2)",
+      borderRadius: "8px",
+    };
+    const titleStyles = {
+      backgroundColor: colors.redAccent[600],
+      color: "#fff",
+    };
+
+   return <animated.div style={useSpring({ opacity: open ? 1 : 0 })}>
+   <Dialog open={open} onClose={handleClose} sx={{ "& .MuiDialog-paper": dialogStyles }}>
+    <DialogTitle sx={{ ...titleStyles }} >Delete Router {routerName}?</DialogTitle>
+    <DialogContent>
+      <Typography color={colors.primary[800]}>
+        Are you sure you want to delete this router and all it's components?
+      </Typography>
+    </DialogContent>
+    <DialogActions>
+      <Button onClick={handleClose}>Cancel</Button>
+      <Button
+        onClick={() => {
+          axios
+            .delete(`http://localhost:3001/deletemetro/${routerName}`)
+            .then(() => {
+              handleClose();
+              window.location.reload();
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }}
+      >
+        Confirm
+      </Button>
+    </DialogActions>
+  </Dialog>
+  </animated.div>
+  }
 
   const metroArrayAnimation = useSpring({
     from: { opacity: 0, transform: 'translateY(-50px)' },
@@ -54,7 +102,7 @@ const handleIconLeave = () => {
     saveIconAnimation.scale.set(1);
     saveIconAnimation.opacity.set(1);
 };
-function AnimatedHeader(props:any) {
+const AnimatedHeader=(props:any)=> {
   const springProps = useSpring({
     opacity: 1,
     transform: 'translateY(0px)',
@@ -68,20 +116,7 @@ function AnimatedHeader(props:any) {
   );
 }
 
-const MyComponent=()=> {
-  return (
-    <Box m="20px">
-      <AnimatedHeader
-        title="Metro"
-        subtitle="Description"
-        addlink="/Metro/add"
-        withbtn={true}
-        variant="2"
 
-      />
-    </Box>
-  );
-}
   const getMetro = () =>{
     axios.get("http://localhost:3001/metro").then((response)=>{
     setMetroList(response.data)
@@ -92,10 +127,9 @@ const MyComponent=()=> {
   }, []);
   function getPort(childData:any){
     setPortAddress(childData.Address);
-
     setPortId(childData.ID);
-
   };
+  
   function callbackFunction(childData:any){
     setRouterName(childData.name);
     setRouterIP(childData.ip);
@@ -105,16 +139,23 @@ const MyComponent=()=> {
     }, 500); 
   };
   const AnimatedBox = animated(Box);
+
   function handelMetroDelete(){
     if (routerName==="No Router Selected"){
       return ;
     }else{
-      axios.delete(`http://localhost:3001/deletemetro/${routerName}`);
-      window.location.reload();
+    handleOpen();
     }
   };
     return    ( <Box  m="20px" >
-      <MyComponent/>
+           <AnimatedHeader
+        title="Metro"
+        subtitle="Description"
+        addlink="/Metro/add"
+        withbtn={true}
+        variant="2"
+
+      />
     <Box
       display="grid"
       gridTemplateColumns="repeat(12, 1fr)"
@@ -255,7 +296,8 @@ const MyComponent=()=> {
               >
                 <DeleteIcon />
               </IconButton>
-
+              
+              <ConfirmBox></ConfirmBox>
             </Box>
 
             </Box>

@@ -8,22 +8,31 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import BlocksMapLsw from './BlocksMapLsw'
 
 
 const LSW = () => {
   const [lswName, setLswName] = useState("No Router Selected");
+  const [selectedLsw, setselectedLsw] = useState([]);
   const [lswModel, setLswModel] = useState("");
   const [lswId, setLswId] = useState(0);
+  const [portAddress, setPortAddress] = useState("No Port Selected");
+  const [portId, setPortId] = useState();
   const [lswUplink, setLswUplink] = useState("");
   const theme = useTheme();
   const colors =tokens(theme.palette.mode)
 
+  function getPort(childData:any){
+    setPortAddress(childData.Address);
+    setPortId(childData.ID);
+  };
+
   function callbackFunction(childData:any){
-    setLswName(childData.labelText)
+    setselectedLsw(childData);
+    setLswName(childData.labelText);
     setLswModel(childData.model);
     setLswId(childData.id);
     setLswUplink(childData.uplink);
-    
   };
   function handelLSWDelete(id:number){
     console.log(id)
@@ -86,6 +95,10 @@ const LSW = () => {
 
         </Box>
         </Box>
+        <BlocksMapLsw
+              parentCallback={getPort}
+              selecteLsw={selectedLsw}
+            />
       </Box>
       </Box>
 

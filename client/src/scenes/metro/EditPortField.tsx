@@ -3,6 +3,7 @@ import { tokens} from "../../theme";
 import { IconButton, Typography, TextField, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useSpring,animated } from "@react-spring/web";
 
 const EditPortField = ({isEditing, portId}:{isEditing:boolean;portId:any}) => {
     const theme = useTheme();
@@ -13,12 +14,18 @@ const EditPortField = ({isEditing, portId}:{isEditing:boolean;portId:any}) => {
     const [portOptHead, setPortOptHead] = useState("");
     const [portObserv, setPortObserv] = useState("");
     const [isDataLoaded, setIsDataLoaded] = useState(false);
-   
+     const animationProps = useSpring({
+
+    opacity: isEditing ? 1 : 1,
+    transform: isEditing ? "translateY(10px)" : "translateY(0px)",
+      
+  });
 
     useEffect(() => {
-        console.log(portId);
+      setIsDataLoaded(false);
         getPort();
       }, [portId]);
+
 function handelSaveClick(){
   axios
   .put(`http://localhost:3001/updateport/${portId}`, {
@@ -37,11 +44,11 @@ function handelSaveClick(){
         try {
             const response = await axios.get(`http://localhost:3001/port/${portId}`);
             const portData = response.data[0];
-            await setPortOptHead(portData.opthead);
-            await setPortAddress(portData.address);
-            await setPortAff(portData.affport);
-            await setPortBreakout(portData.breakout);
-            await setPortObserv(portData.observ);
+             setPortOptHead(portData.opthead);
+             setPortAddress(portData.address);
+             setPortAff(portData.affport);
+             setPortBreakout(portData.breakout);
+             setPortObserv(portData.observ);
             
             setTimeout(() => {
             setIsDataLoaded(true)
@@ -52,9 +59,11 @@ function handelSaveClick(){
         }
     };
   return (
+    <animated.div style={animationProps}>
     <Box display="flex" justifyContent="center" alignItems="center" height="100%">
     {isDataLoaded ? ( // Conditionally render JSX based on data loading status
     <Box>
+       
     <Box>
               <Typography
                 variant="h6"
@@ -189,11 +198,12 @@ function handelSaveClick(){
             Save
           </Button> */}
         </Box>
+        
     </Box>   ) : (
       null
     )}
 </Box>
-
+</animated.div>
     
 
 

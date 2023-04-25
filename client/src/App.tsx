@@ -13,6 +13,7 @@ import MetroAdd from "./scenes/metro/MetroAdd";
 import MetroEdit from "./scenes/metro/MetroEdit";
 import LSWAdd from "./scenes/lsw/LSWAdd";
 import LSWEdit from "./scenes/lsw/LSWEdit";
+import RouterRack from "./scenes/wide-view";
 
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
             <Routes>
             <Route path="/" element={<Metro />}/>
             <Route path="/LSW" element={<LSW />} />
-            <Route path="/test" element={<MetroAdd />} />
+            <Route path="/test" element={<RouterRack />} />
             <Route path="/Metro/add" element={<MetroAdd />} />
             <Route path="/Metro/edit" element={<MetroEdit/>} />
             <Route path="/LSW/add" element={<LSWAdd/>} />

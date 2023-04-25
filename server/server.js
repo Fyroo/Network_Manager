@@ -243,10 +243,116 @@ app.put("/updateport/:id", (req, res) => { // Update the URL parameter to ':id'
     );
 });
 
+///////////////////////////////
 
+app.get("/lswblocks/:lswid", (req,res) => {
+    const lswid = req.params.lswid
+    db.query("SELECT * FROM lswblocks WHERE lswid=?", lswid, (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(result);
+        }
+    });
+});
 
+app.post("/createlswblock", (req, res) => {
+    const name = req.body.name;
+    const lswid = req.body.lswid;
+    const state = req.body.state;
+    const slot = req.body.slot;
+    const length = req.body.length;
 
+    db.query(
+        "INSERT INTO lswblocks (name, lswid, state, slot, length) VALUES (?,?,?,?,?)",
+        [name, lswid, state, slot,length],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Block created successfully");
+            }
+        }
+    );
+});
 
+app.get("/lswports/:blockid", (req,res) => {
+    const blockid = req.params.blockid
+    db.query("SELECT * FROM lswports WHERE blockid=?", blockid, (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(result);
+        }
+    });
+});
+
+app.get("/lswport/:id", (req,res) => {
+    const id = req.params.id
+    db.query("SELECT * FROM lswports WHERE id=?", id, (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(result);
+        }
+    });
+});
+
+app.post("/createlswport", (req, res) => {
+    
+    const blockid = req.body.blockid;
+    const slot = req.body.slot;
+
+    db.query(
+        "INSERT INTO lswports (blockid, slot) VALUES (?,?)",
+        [blockid, slot],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Port created successfully");
+            }
+        }
+    );
+});
+
+app.put("/updatelswblocks/:id", (req, res) => { // Update the URL parameter to ':id'
+    const id = req.params.id; // Retrieve 'id' from URL parameters
+    const state = req.body.state;
+
+    db.query(
+        "UPDATE lswblocks SET state=? WHERE id=?",
+        [state, id],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Block state updated successfully");
+            }
+        }
+    );
+});
+
+app.put("/updatelswport/:id", (req, res) => { // Update the URL parameter to ':id'
+    const id = req.params.id; // Retrieve 'id' from URL parameters
+    const address = req.body.address;
+    const client = req.body.client;
+    const breakout = req.body.breakout;
+    const otfo = req.body.otfo;
+    const pos= req.body.pos;
+
+    db.query(
+        "UPDATE lswports SET address=?, client=?, breakout=?, otfo=?, pos=? WHERE id=?",
+        [address, client,breakout,otfo,pos,id],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send("Port updated successfully");
+            }
+        }
+    );
+});
 
 app.listen(3001, ()=>{
     console.log("  Server running on port 3001 \n  ➜  Local:   http://localhost:3001/ ");

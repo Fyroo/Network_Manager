@@ -9,7 +9,7 @@ const lswinfo =[
         id: 2,
         blocksnumber: 1,
         blockorder:46,
-        modelname:"LSW 5750"
+        modelname:"LSW 5720"
     },
     {
         id: 3,
