@@ -4,6 +4,7 @@ import axios from 'axios';
 import PortIcon from '../../components/PortIcon';
 import { tokens } from "../../theme";
 import { useTheme } from "@mui/system";
+import { useSpring, animated } from "react-spring";
 
 const lswPortsMapLsw = ({ block, parentCallback }: { parentCallback: (childData: any) => void; block: any }) => {
     const theme = useTheme();
@@ -11,7 +12,15 @@ const lswPortsMapLsw = ({ block, parentCallback }: { parentCallback: (childData:
     const [portList, setPortList] = useState<any[]>([]);
     const [isDataLoaded, setIsDataLoaded] = useState(false);
     const checkCalledRef = useRef(false); 
-
+    const loadingAnimation = useSpring({
+        opacity: isDataLoaded ? 0 : 1,
+        transform: isDataLoaded ? "translateY(-50px)" : "translateY(0)",
+      });
+    
+      const dataAnimation = useSpring({
+        opacity: isDataLoaded ? 1 : 0,
+        transform: isDataLoaded ? "translateY(0)" : "translateY(50px)",
+      });
     useEffect(() => {
              getlswPorts();
     }, [block]);
@@ -69,7 +78,7 @@ const lswPortsMapLsw = ({ block, parentCallback }: { parentCallback: (childData:
             <Box flexDirection={'column'}>
                 <Box display={'flex'} alignItems={'center'} justifyContent={'center'}>
                     <Button style={{ padding: '5' }} onClick={() => handelShowClick(props)}>
-                        <PortIcon isActive={true} />
+                        <PortIcon/>
                     </Button>
                 </Box>
                 <Box display={'flex'} alignItems={'center'} justifyContent={'center'}>
@@ -82,16 +91,23 @@ const lswPortsMapLsw = ({ block, parentCallback }: { parentCallback: (childData:
     }
 
     return (
-        <Box><Typography>{block.length}</Typography>
-            {isDataLoaded ? (
-                <Box>{dataPort}</Box>
-            ) : (
-                <Box display="flex" justifyContent="center" alignItems="center" height="100%">
-                    <Typography>Loading lswPorts...</Typography>
-                </Box>
-            )}
-        </Box>
-    )
+        <Box>
+        <Typography>{block.name}</Typography>
+        <animated.div style={loadingAnimation}>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            height="100%"
+          >
+            <Typography>Loading Ports...</Typography>
+          </Box>
+        </animated.div>
+        <animated.div style={dataAnimation}>
+          <Box display="flex" height="auto" flexDirection="row">{dataPort}</Box>
+        </animated.div>
+      </Box>
+    );
 }
 
 export default lswPortsMapLsw;

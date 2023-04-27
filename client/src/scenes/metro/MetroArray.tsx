@@ -69,60 +69,63 @@ const MetroArray = ({data, parentCallback}: { data:any, parentCallback: (childDa
 
   return (
 
+    <Box
+    m={ "0 0 0 0" }
+    height={"33vh"}
+    sx={{
+      "& .MuiDataGrid-root": {
+        border: "none",
+        boxShadow: "0px 0px 10px 0px rgba(0, 0, 0, 0.2)",
+      },
+      "& .MuiDataGrid-cell": {
+        borderBottom: "none",
+        padding: "10px 15px",
+      },
+      "& .name-column--cell": {
+        color: colors.greenAccent[300],
+      },
+      "& .MuiDataGrid-columnHeaders": {
+        backgroundColor: colors.blueAccent[700],
+        borderBottom: "none",
+        padding: "10px 15px",
+      },
+      "& .MuiDataGrid-virtualScroller": {
+        backgroundColor: colors.primary[400],
+      },
+      "& .MuiDataGrid-footerContainer": {
+        borderTop: "none",
+        backgroundColor: colors.blueAccent[700],
+        padding: "10px 15px",
+      },
+      "& .MuiCheckbox-root": {
+        color: `${colors.greenAccent[200]} !important`,
+      },
+      "& .MuiDataGrid-root .MuiDataGrid-cell:focus": {
+        outline:"none",
+      },
       
-      <Box
-        m={ "0 0 0 0" }
-        height={"33vh"}
-        sx={{
-          "& .MuiDataGrid-root": {
-            border: "none",
-          },
-          "& .MuiDataGrid-cell": {
-            borderBottom: "none",
-          },
-          "& .name-column--cell": {
-            color: colors.greenAccent[300],
-          },
-          "& .MuiDataGrid-columnHeaders": {
-            backgroundColor: colors.blueAccent[700],
-            borderBottom: "none",
-          },
-          "& .MuiDataGrid-virtualScroller": {
-            backgroundColor: colors.primary[400],
-          },
-          "& .MuiDataGrid-footerContainer": {
-            borderTop: "none",
-            backgroundColor: colors.blueAccent[700],
-          },
-          "& .MuiCheckbox-root": {
-            color: `${colors.greenAccent[200]} !important`,
-          },
-          "& .MuiDataGrid-root .MuiDataGrid-cell:focus": {
-            outline:"none",
-          },
-          
-          "& .MuiDataGrid-root .MuiDataGrid-cell":{
-            border:"none"
-          },
-          "& .MuiDataGrid-row:nth-of-type(odd)": {
-            outline:"none",
-            backgroundColor: theme.palette.mode === 'dark' ? colors.primary[500] : colors.primary[900],
-          },
-          "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-            color: `${colors.grey[100]} !important`,
-          },
-          "& .MuiDataGrid-row:hover":{
-            backgroundColor: theme.palette.mode === 'dark' ? colors.primary[900] : colors.grey[800],          },
-        }}
-      >
-        <DataGrid hideFooter 
-        rows={data} 
-        columns={columns}
-        onRowClick={(params) => handleItemClick(params.row)}
-        components={{ Toolbar: GridToolbar }} />
-      </Box>
-    
-  );
+      "& .MuiDataGrid-root .MuiDataGrid-cell":{
+        border:"none"
+      },
+      "& .MuiDataGrid-row:nth-of-type(odd)": {
+        outline:"none",
+        backgroundColor: theme.palette.mode === 'dark' ? colors.primary[500] : colors.primary[900],
+      },
+      "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
+        color: `${colors.grey[100]} !important`,
+      },
+      "& .MuiDataGrid-row:hover":{
+        backgroundColor: theme.palette.mode === 'dark' ? colors.primary[900] : colors.grey[800],          },
+    }}
+  >
+    <DataGrid hideFooter 
+    rows={data} 
+    columns={columns}
+    onRowClick={(params) => handleItemClick(params.row)}
+    components={{ Toolbar: GridToolbar }} />
+  </Box>
+
+);
 };
 
 export default MetroArray;

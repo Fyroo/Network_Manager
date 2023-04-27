@@ -5,6 +5,8 @@ import info from "./modelinfo";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import PortsMap from "./PortsMap";
+import { useSpring, animated } from "react-spring";
+import RackIcon from "../../components/RackIcon";
 
 
 const BlocksMap = ({ parentCallback ,selectedMetro}: { selectedMetro:any;parentCallback: (childData: any) => void }) => {
@@ -17,6 +19,10 @@ const BlocksMap = ({ parentCallback ,selectedMetro}: { selectedMetro:any;parentC
   function getPort(childData:any){
     parentCallback(childData);
   };
+  const dataAnimation = useSpring({
+    opacity: isDataLoaded ? 1 : 0,
+    transform: isDataLoaded ? "translateY(0)" : "translateY(50px)",
+  });
   const enableBlock = async (blockId: number) => {
     try {
       await axios.put(`http://localhost:3001/updateblocks/${blockId}`, { state: 1 });
@@ -52,18 +58,53 @@ const BlocksMap = ({ parentCallback ,selectedMetro}: { selectedMetro:any;parentC
     getBlocks();
     
   }, [blockState]);
-
+  const AnimatedBox = animated(Box);
+  const boxAnimation = useSpring({
+    from: { opacity: 0, },
+    to: { opacity: 1,},
+    delay: 500,
+    reverse: !AnimatedBox,
+    reset: !AnimatedBox,
+  });
+  const [hovered, setHovered] = useState(false);
+  const { color, bg } = useSpring({
+    color: hovered ? colors.blueAccent[700] : colors.greenAccent[300],
+    bg: hovered ? colors.greenAccent[900] : colors.blueAccent[700],
+  });
   const dataComp = blocksList.map((data) => {
     if (data.state === 1) {
-      return (<PortsMap key={data.id} block={data} parentCallback={getPort}/>
+      return (
+        <PortsMap key={data.id} block={data} parentCallback={getPort}/>
       );
     } else {
       return (
-        <Box flexDirection={'column'} key={data.id}>
-          <Typography>{data.name}</Typography>
+        
+        <AnimatedBox 
+        display='flex' 
+        padding={'20px'}
+        justifyContent="center" 
+        alignItems="center" 
+        style={boxAnimation} 
+        flexDirection={'column'} 
+        key={data.id} 
+        onMouseEnter={() => setHovered(true)}
+         onMouseLeave={() => setHovered(false)}>
+
+          <animated.div 
+          style={{ color }}>
+            {data.name}
+            </animated.div>
+          <RackIcon/>
           <Button 
-          onClick={() => handleEnableClick(data)}>enable</Button>
-        </Box>
+            onClick={() => handleEnableClick(data)} 
+            style={{
+              backgroundColor: bg,
+              transition: "background-color 0.2s ease-in-out",
+            }}
+          >
+            Mount Rack
+          </Button>
+        </AnimatedBox>
       );
     }
   });
@@ -93,16 +134,32 @@ const BlocksMap = ({ parentCallback ,selectedMetro}: { selectedMetro:any;parentC
   }
   
   return (
-    <Box display="flex" height="34vh" flexDirection="column" 
-    style={{ overflow: "hidden", overflowY: "scroll" }}>
+    <Box 
+      display="flex" 
+      height="34vh" 
+      flexDirection="column" 
+      style={{ overflow: "hidden", overflowY: "scroll" }}
+    >
       {isDataLoaded ? ( // Conditionally render JSX based on data loading status
-        <Box>{dataComp}</Box>    ) : (
-          <Box display="flex" justifyContent="center" alignItems="center" height="100%">
-            <Typography>Loading data...</Typography>
-          </Box>
-        )}
+      <animated.div style={dataAnimation}>
+      <Box display={"flex"} 
+      flexDirection={"column"}>
+        {dataComp}
+      </Box>
+      </animated.div>
+      ) : (
+        <Box
+        sx={{ m:1, border: 1 ,borderColor: colors.primary[100], borderRadius: "10px"}}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height={'100%'}
+        >
+          <Typography variant="h3" color={colors.blueAccent[200]}>Waiting for selection...</Typography>
+        </Box>
+      )}
     </Box>
-    );
-  };
-  
-  export default BlocksMap;
+  );
+};
+
+export default BlocksMap;

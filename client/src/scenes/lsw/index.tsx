@@ -9,8 +9,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import BlocksMapLsw from './BlocksMapLsw'
-
-
+import { useSpring, animated } from "react-spring";
+import { AnimatedTypography } from '../../components/AnimatedComponents'
+import EditLswPortField from './EditLswPortField'
 const LSW = () => {
   const [lswName, setLswName] = useState("No Router Selected");
   const [selectedLsw, setselectedLsw] = useState([]);
@@ -21,7 +22,12 @@ const LSW = () => {
   const [lswUplink, setLswUplink] = useState("");
   const theme = useTheme();
   const colors =tokens(theme.palette.mode)
-
+  const AnimatedBox = animated(Box);
+  const boxAnimation = useSpring({
+    from: { backgroundColor: colors.primary[500] },
+    to: { backgroundColor: colors.blueAccent[500] },
+    delay: 300,
+  });
   function getPort(childData:any){
     setPortAddress(childData.Address);
     setPortId(childData.ID);
@@ -46,8 +52,9 @@ const LSW = () => {
 
   return (
 <Box m={"20px"}>
+  <Header title="LSW" subtitle="Description" addlink='/LSW/add' withbtn={true} variant={''}/>
       <Box display={"flex"} justifyContent="space-between" alignItems={"center"}>
-      <Header title="LSW" subtitle="Description" addlink='/LSW/add' withbtn={true} variant={''}/>
+      
       </Box> 
       <Box
       
@@ -57,25 +64,48 @@ const LSW = () => {
       gridRow={1}
       gap="23px">
 
-        <Box gridColumn="span 3" gridRow="span 1" minHeight={'80vh'} style={{ backgroundColor:colors.blueAccent[500]}}>
-        <Box  pt={"10px"} sx={{backgroundColor:colors.blueAccent[800]}}
+        <AnimatedBox gridColumn="span 3" gridRow="span 1" minHeight={'80vh'} 
+        style={boxAnimation}
+        sx={{
+          backgroundColor: colors.blueAccent[500],
+          borderRadius: "10px",
+          color: "white",
+          display: "flex",
+          flexDirection: "column",
+          padding: "20px",
+        }}>
+        <Box  pt={"10px"} sx={{backgroundColor:colors.blueAccent[800],
+        }}
         justifyContent="space-between" alignContent={"center"}>
-        <Typography p= "10px 25px 15px" variant="h5" fontWeight="600" color={colors.grey[100]}>
+        <AnimatedTypography reset={false} p= "10px 25px 15px" variant="h5" fontWeight="600" color={colors.grey[100]}>
           LSW
-        </Typography>
+        </AnimatedTypography>
         </Box>
         
       
         <GmailTreeView parentCallback={callbackFunction} />
           
           
-      </Box>  
-      <Box gridColumn="span 9" gridRow="span 1" minHeight={'80vh'} style={{ backgroundColor:colors.blueAccent[500]}}>
+      </AnimatedBox>  
+      <AnimatedBox
+       gridColumn="span 9" 
+      gridRow="span 1"
+       minHeight={'80vh'}
+        style={boxAnimation}
+        sx={{
+          backgroundColor: colors.blueAccent[500],
+          borderRadius: "10px",
+          color: "white",
+          display: "flex",
+          flexDirection: "column",
+          padding: "20px",
+        }}>
       <Box display={'flex'}  pt={"10px"} sx={{backgroundColor:colors.blueAccent[800]}}
         justifyContent="space-between" alignContent={"center"}>
-        <Typography p= "10px 25px 15px" variant="h5" fontWeight="600" color={colors.grey[100]}>
+       <AnimatedTypography reset={true}
+        p= "10px 25px 15px" variant="h5" fontWeight="600" color={colors.grey[100]}>
           {lswName}
-        </Typography>
+        </AnimatedTypography>
         <Box   justifyContent="space-between">
         
         <Link to={lswName === 'No Router Selected' ?"#":"/LSW/edit"} 
@@ -99,9 +129,34 @@ const LSW = () => {
               parentCallback={getPort}
               selecteLsw={selectedLsw}
             />
-      </Box>
-      </Box>
+                      <Box display={"flex"} alignItems={"center"} height={"100%"}>
+            <AnimatedBox
+              style={boxAnimation}
+              sx={{
+                minHeight: "20vh",
+                backgroundColor: colors.blueAccent[500],
+                borderRadius: "10px",
+                color: "white",
+                display: "flex",
+                flexDirection: "column",
+                padding: "20px",
+                width: "100%",
+              }}
+            >
 
+                <AnimatedTypography alignSelf={'center'} variant="h4" fontWeight="600">
+                  {portAddress}
+                </AnimatedTypography>
+             
+              <Box sx={{ marginTop: "15px" }}>
+                {portAddress !== "No Port Selected" && (
+                  <EditLswPortField portId={portId} portadd={portAddress} />
+                )}
+              </Box>
+            </AnimatedBox>
+          </Box>
+      </AnimatedBox>
+      </Box>
 
   </Box>
 
