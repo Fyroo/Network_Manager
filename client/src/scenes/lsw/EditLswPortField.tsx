@@ -70,8 +70,11 @@ const EditLswPortField = ({
   };
   return (
     <animated.div style={animationProps}>
-      <Box display={"flex"} flexDirection={'column'}>
-        <Box display={'flex'} height={'35px'} alignSelf={'end'}>
+      <Box display={"flex"}
+       flexDirection={'column'}>
+        <Box display={'flex'}
+         height={'35px'}
+          alignSelf={'end'}>
           <IconButton
             aria-label="save"
             sx={{ color: colors.blueAccent[100] }}

@@ -4,8 +4,11 @@ import { IconButton, Typography, TextField, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useSpring,animated } from "@react-spring/web";
+import SaveIcon from "@mui/icons-material/Save";
+import EditIcon from "@mui/icons-material/Edit";
 
-const EditPortField = ({isEditing, portId}:{isEditing:boolean;portId:any}) => {
+const EditPortField = ({ portId}:{portId:any}) => {
+  const [isEditing, setIsEditing] = useState(false);
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [portAddress, setPortAddress] = useState("");
@@ -37,6 +40,7 @@ function handelSaveClick(){
   })
   .then((response) => {
     alert("Port Updated");
+    setIsEditing(false);
   });
 }
 
@@ -60,7 +64,32 @@ function handelSaveClick(){
     };
   return (
     <animated.div style={animationProps}>
-    <Box display="flex" justifyContent="center" alignItems="center" height="100%">
+    <Box display="flex"
+    flexDirection={'column'}
+     justifyContent="center"
+      alignItems="center"
+       height="100%">
+      <Box display={'flex'}
+         height={'35px'}
+          alignSelf={'end'}>
+          <IconButton
+            aria-label="save"
+            sx={{ color: colors.blueAccent[100] }}
+            disabled={portAddress === "No Port Selected" || !isEditing}
+            onClick={() => handelSaveClick()}
+          >
+            <SaveIcon />
+          </IconButton>
+
+          <IconButton
+            aria-label="edit"
+            sx={{ color: colors.blueAccent[100] }}
+            disabled={portAddress === "No Port Selected" || isEditing}
+            onClick={() => setIsEditing(true)}
+          >
+            <EditIcon />
+          </IconButton>
+        </Box>
     {isDataLoaded ? ( // Conditionally render JSX based on data loading status
     <Box>
        

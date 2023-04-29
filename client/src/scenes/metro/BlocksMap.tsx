@@ -155,7 +155,7 @@ const BlocksMap = ({ parentCallback ,selectedMetro}: { selectedMetro:any;parentC
           alignItems="center"
           height={'100%'}
         >
-          <Typography variant="h3" color={colors.blueAccent[200]}>Waiting for selection...</Typography>
+          <Typography textAlign={'center'} variant="h3" color={colors.blueAccent[200]}>Waiting for selection...</Typography>
         </Box>
       )}
     </Box>

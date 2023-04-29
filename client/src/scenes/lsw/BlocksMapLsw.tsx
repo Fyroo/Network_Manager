@@ -148,27 +148,33 @@ const BlocksMapLsw = ({
   return (
     <Box
       display="flex"
-      minHeight={'33vh'}
+      minHeight={"33vh"}
       flexDirection="row"
       style={{ overflow: "hidden", overflowX: "scroll" }}
     >
-      {isDataLoaded ? ( // Conditionally render JSX based on data loading status
-      <animated.div style={dataAnimation}>
-        <Box display={"flex"} 
-        flexDirection={"row"}>
-          {dataComp}
-        </Box>
+      {isDataLoaded ? (
+        // Conditionally render JSX based on data loading status
+        <animated.div style={dataAnimation}>
+          <Box display={"flex"} flexDirection={"row"}>
+            {dataComp}
+          </Box>
         </animated.div>
       ) : (
         <Box
-        sx={{ m:1, border: 1 ,borderRadius: "10px",borderColor: colors.primary[100] }}
+          sx={{
+            m: 1,
+            border: 1,
+            borderRadius: "10px",
+            borderColor: colors.primary[100],
+          }}
           display="flex"
           justifyContent="center"
-          
           alignItems="center"
-          width={'100%'}
+          width={"100%"}
         >
-          <Typography variant="h3" color={colors.blueAccent[200]}>Waiting for selection...</Typography>
+          <Typography textAlign={'center'} variant="h3" color={colors.blueAccent[200]}>
+            Waiting for selection...
+          </Typography>
         </Box>
       )}
     </Box>

@@ -197,42 +197,10 @@ const Metro = () => {
                 <Typography variant="h6" fontWeight="600">
                   {portAddress}
                 </Typography>
-                <Box alignSelf={"flex-end"}>
-                  <animated.div
-                    style={editIconAnimation}
-                    onMouseEnter={handleEditIconHover}
-                    onMouseLeave={handleIconLeave}
-                  >
-                    <IconButton
-                      aria-label="save"
-                      sx={{ color: colors.blueAccent[100] }}
-                      disabled={
-                        portAddress === "No Port Selected" || !isEditing
-                      }
-                      onClick={() => setIsEditing(false)}
-                    >
-                      <SaveIcon />
-                    </IconButton>
-                  </animated.div>
-                  <animated.div
-                    style={saveIconAnimation}
-                    onMouseEnter={handleSaveIconHover}
-                    onMouseLeave={handleIconLeave}
-                  >
-                    <IconButton
-                      aria-label="edit"
-                      sx={{ color: colors.blueAccent[100] }}
-                      disabled={portAddress === "No Port Selected" || isEditing}
-                      onClick={() => setIsEditing(true)}
-                    >
-                      <EditIcon />
-                    </IconButton>
-                  </animated.div>
-                </Box>
               </Box>
               <Box sx={{ marginTop: "15px" }}>
                 {portAddress !== "No Port Selected" && (
-                  <EditPortField isEditing={isEditing} portId={portId} />
+                  <EditPortField portId={portId} />
                 )}
               </Box>
             </AnimatedBox>
