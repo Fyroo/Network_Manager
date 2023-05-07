@@ -1,91 +1,136 @@
-import { useState } from "react";
-import { Box, } from '@mui/system'
-import { Button, IconButton } from "@mui/material";
-import { styled } from '@mui/material/styles';
-import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
+// import { useState, Fragment } from "react";
+// import axios from "axios";
+// import { useTheme } from "@mui/system";
+// import { tokens } from "../../theme";
+// import { Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Paper, Button, IconButton } from "@mui/material";
+// import EditIcon from '@mui/icons-material/Edit';
+// import DeleteIcon from '@mui/icons-material/Delete';
 
-const RootBox = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.grey[100],
-  border: `2px solid ${theme.palette.grey[300]}`,
-  borderRadius: theme.shape.borderRadius,
-  padding: theme.spacing(6),
-  position: "relative",
-  overflow: "hidden",
-  "&::before": {
-    content: "''",
-    position: "absolute",
-    top: "0",
-    left: "0",
-    right: "0",
-    bottom: "0",
-    backgroundImage: "url('/router-rack-empty.png')",
-    backgroundSize: "cover",
-    opacity: "0.4",
-    zIndex: "1",
-  },
-}));
+ const RouterRack = ({ inputData }: { inputData: any }) => {
+//   const theme = useTheme();
+//   const colors = tokens(theme.palette.mode);
 
-const RouterBox = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.grey[700],
-  color: theme.palette.common.white,
-  fontSize: "6rem",
-  fontWeight: "bold",
-  textAlign: "center",
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: "100%",
-  height: "100%",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  zIndex: "2",
-}));
+//   const [editContactId, setEditContactId] = useState(null);
+//   const [editFormData, setEditFormData] = useState({
+//     name: "",
+//     A: "",
+//     B: "",
+//     FO: "",
+//     dest: "",
+//     obs: "",
+//   });
 
-const MountButton = styled(Button)(({ theme }) => ({
-  position: "absolute",
-  bottom: theme.spacing(6),
-  right: theme.spacing(6),
-  zIndex: "2",
-}));
+//   const handleEditClick = (event: any, contact: any) => {
+//     event.preventDefault();
+//     setEditContactId(contact.id);
+//     setEditFormData(contact);
+//   };
 
-const PowerButton = styled(IconButton)(({ theme }) => ({
-  position: "absolute",
-  top: theme.spacing(6),
-  right: theme.spacing(6),
-  zIndex: "2",
-}));
+//   const handleCancelClick = () => {
+//     setEditContactId(null);
+//   };
 
-const RouterRack = () => {
-  const [mounted, setMounted] = useState(false);
+//   const handleEditFormChange = (event: any) => {
+//     setEditFormData({
+//       ...editFormData,
+//       [event.target.name]: event.target.value,
+//     });
+//   };
 
-  const handleMount = () => {
-    setMounted(true);
-  };
+//   const handleEditFormSubmit = (event: any) => {
+//     event.preventDefault();
+//   };
 
-  const handleDismount = () => {
-    setMounted(false);
-  };
+//   const handleSaveClick = (id: any, contact: any) => {
+//     axios
+//       .put(`https://my.api.com/contacts/${id}`, contact)
+//       .then(() => {
+//         setEditContactId(null);
+//       })
+//       .catch((err: any) => {
+//         console.error(err);
+//       });
+//   };
 
-  return (
-    <RootBox>
-      {mounted && <RouterBox>Router</RouterBox>}
-      <MountButton
-        variant="contained"
-        color={mounted ? "secondary" : "primary"}
-        size="large"
-        onClick={mounted ? handleDismount : handleMount}
-      >
-        {mounted ? "Dismount" : "Mount"}
-      </MountButton>
-      {mounted && (
-        <PowerButton aria-label="power-off" onClick={handleDismount}>
-          <PowerSettingsNewIcon />
-        </PowerButton>
-      )}
-    </RootBox>
-  );
-};
+//   const handleDeleteClick = (id: any) => {
+//     axios
+//       .delete(`https://my.api.com/contacts/${id}`)
+//       .then(() => {
+//         setEditContactId(null);
+//       })
+//       .catch((err: any) => {
+//         console.error(err);
+//       });
+//   };
+
+//   return (
+//     <TableContainer component={Paper} style={{ backgroundColor: colors.primary["500"] }}>
+//       <Table sx={{ minWidth: 650 }}>
+//         <TableHead>
+//           <TableRow sx={{ backgroundColor: colors.grey["700"] }}>
+//             <TableCell style={{ fontSize: "16px", color: "white", width: "180px" }}>Name</TableCell>
+//             <TableCell style={{ fontSize: "16px", color: "white", width: "180px" }}>Extremite A</TableCell>
+//             <TableCell style={{ fontSize: "16px", color: "white", width: "180px" }}>Extremite B</TableCell>
+//             <TableCell style={{ fontSize: "16px", color: "white", width: "180px" }}>vers FO</TableCell>
+//             <TableCell style={{ fontSize: "16px", color: "white", width: "180px" }}>Destination</TableCell>
+//             <TableCell style={{ fontSize: "16px", color: "white", width: "180px" }}>Observ</TableCell>
+//             <TableCell style={{ fontSize: "16px", color: "white", width: "180px" }}>Actions</TableCell>
+//           </TableRow>
+//         </TableHead>
+//         <TableBody>
+//           {inputData.map((contact: any) => (
+//             <Fragment key={contact.id}>
+//               {editContactId === contact.id ? (
+//                 <TableRow>
+//                   <TableCell>
+//                     <input type="text" disabled={true} placeholder="Enter a name..." name="name" value={editFormData.name} onChange={handleEditFormChange} ></input>
+//                   </TableCell>
+//                   <TableCell>
+//                     <input type="text" required={true} placeholder="Enter an A..." name="A" value={editFormData.A} onChange={handleEditFormChange} ></input>
+//                   </TableCell>
+//                   <TableCell>
+//                     <input type="text" required={true} placeholder="Enter a phone number..." name="B" value={editFormData.B} onChange={handleEditFormChange} ></input>
+//                   </TableCell>
+//                   <TableCell>
+//                     <input type="FO" required={true} placeholder="Enter an FO..." name="FO" value={editFormData.FO} onChange={handleEditFormChange} ></input>
+//                   </TableCell>
+//                   <TableCell>
+//                     <input type="dest" required={true} placeholder="Enter a destination" name="dest" value={editFormData.dest} onChange={handleEditFormChange} ></input>
+//                   </TableCell>
+//                   <TableCell>
+//                     <input type="obs" required={true} placeholder="Enter an observation..." name="obs" value={editFormData.obs} onChange={handleEditFormChange} ></input>
+//                   </TableCell>
+//                   <TableCell>
+//                     <Button variant="contained" onClick={() => handleSaveClick(contact.id, editFormData)}>Save</Button>
+//                     <IconButton aria-label="cancel" onClick={handleCancelClick}>
+//                       <DeleteIcon />
+//                     </IconButton>
+//                   </TableCell>
+//                 </TableRow>
+//               ) : (
+//                 <TableRow>
+//                   <TableCell>{contact.name}</TableCell>
+//                   <TableCell>{contact.A}</TableCell>
+//                   <TableCell>{contact.B}</TableCell>
+//                   <TableCell>{contact.FO}</TableCell>
+//                   <TableCell>{contact.dest}</TableCell>
+//                   <TableCell>{contact.obs}</TableCell>
+//                   <TableCell>
+//                     <Button variant="contained" onClick={(event) => handleEditClick(event, contact)}>
+//                       <EditIcon />
+//                     </Button>
+//                     <IconButton aria-label="delete" onClick={() => handleDeleteClick(contact.id)}>
+//                       <DeleteIcon />
+//                     </IconButton>
+//                   </TableCell>
+//                 </TableRow>
+//               )}
+//             </Fragment>
+//           ))}
+//         </TableBody>
+//       </Table>
+//     </TableContainer>
+//   );
+ };
 
 export default RouterRack;

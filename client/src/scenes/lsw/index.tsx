@@ -12,6 +12,7 @@ import BlocksMapLsw from './BlocksMapLsw'
 import { useSpring, animated } from "react-spring";
 import { AnimatedTypography } from '../../components/AnimatedComponents'
 import EditLswPortField from './EditLswPortField'
+
 const LSW = () => {
   const [lswName, setLswName] = useState("No Router Selected");
   const [selectedLsw, setselectedLsw] = useState([]);
@@ -21,7 +22,7 @@ const LSW = () => {
   const [portId, setPortId] = useState();
   const [lswUplink, setLswUplink] = useState("");
   const theme = useTheme();
-  const colors =tokens(theme.palette.mode)
+  const colors =tokens(theme.palette.mode);
   const AnimatedBox = animated(Box);
   const boxAnimation = useSpring({
     from: { backgroundColor: colors.primary[500] },
@@ -53,9 +54,7 @@ const LSW = () => {
   return (
 <Box m={"20px"}>
   <Header title="LSW" subtitle="Description" addlink='/LSW/add' withbtn={true} variant={''}/>
-      <Box display={"flex"} justifyContent="space-between" alignItems={"center"}>
-      
-      </Box> 
+
       <Box
       
       display="grid"

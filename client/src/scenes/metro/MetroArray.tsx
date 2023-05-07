@@ -18,7 +18,7 @@ const MetroArray = ({data, parentCallback}: { data:any, parentCallback: (childDa
     {
       field: "name",
       headerName: "Name",
-      flex: 1,
+      flex: 2,
       cellClassName: "name-column--cell",
       minWidth: 100,
     },
@@ -34,43 +34,12 @@ const MetroArray = ({data, parentCallback}: { data:any, parentCallback: (childDa
       flex: 1,
       minWidth: 100,
     },
-    {
-      field: "acess",
-      headerName: "Access Level",
-      flex: 1,
-      headerAlign:"center",
-      minWidth: 100,
-      renderCell: (params: GridCellParams) => {
-        const access = params.value as string;
-        return (
-          <Box style={{ opacity: 0, transition: 'opacity 0.5s ease-in' }}
-            width="60%"
-            m="0 auto"
-            p="5px"
-            display="flex"
-            justifyContent="center"
-            color={
-              access === "admin"
-                ? colors.greenAccent[600]
-                : colors.redAccent[700]
-            }
-            borderRadius="4px"
-          >
-            {access === "admin" && <AdminPanelSettingsOutlinedIcon />}
-            {access === "user" && <LockOutlinedIcon />}
-            <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
-              {access}
-            </Typography>
-          </Box>
-        );
-      },
-    },
+
   ];
 
   return (
 
     <Box
-    m={ "0 0 0 0" }
     height={"33vh"}
     sx={{
       "& .MuiDataGrid-root": {
@@ -86,6 +55,8 @@ const MetroArray = ({data, parentCallback}: { data:any, parentCallback: (childDa
       },
       "& .MuiDataGrid-columnHeaders": {
         backgroundColor: colors.blueAccent[700],
+        borderTopLeftRadius:'10px',
+        borderTopRightRadius:'10px',
         borderBottom: "none",
         padding: "10px 15px",
       },
@@ -107,18 +78,20 @@ const MetroArray = ({data, parentCallback}: { data:any, parentCallback: (childDa
       "& .MuiDataGrid-root .MuiDataGrid-cell":{
         border:"none"
       },
+      
       "& .MuiDataGrid-row:nth-of-type(odd)": {
         outline:"none",
         backgroundColor: theme.palette.mode === 'dark' ? colors.primary[500] : colors.primary[900],
       },
       "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
+    
         color: `${colors.grey[100]} !important`,
       },
       "& .MuiDataGrid-row:hover":{
         backgroundColor: theme.palette.mode === 'dark' ? colors.primary[900] : colors.grey[800],          },
     }}
   >
-    <DataGrid hideFooter 
+    <DataGrid style={{borderRadius:'10px'}} hideFooter 
     rows={data} 
     columns={columns}
     onRowClick={(params) => handleItemClick(params.row)}
