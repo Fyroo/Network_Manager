@@ -16,7 +16,9 @@ import LSWAdd from "./scenes/lsw/LSWAdd";
 import LSWEdit from "./scenes/lsw/LSWEdit";
 import RouterRack from "./scenes/wide-view";
 import FoAdd from './scenes/backhaul/FoAdd';
-
+import Register from './scenes/User/Register';
+import Login from './scenes/User/Login';
+import UserManager from './scenes/User/UserManager';
 
 function App() {
   const {theme, toggleColorMode} = useMode();
@@ -43,7 +45,9 @@ function App() {
             <Route path="/Backhaul/48FO" element={<Backhaul foVarient={48} />} />
             <Route path="/Backhaul/24FO" element={<Backhaul foVarient={24} />} />
             <Route path="/Backhaul/Add" element={<FoAdd/>} />
-
+            <Route path="/Register" element={<Register/>} />
+            <Route path="/Login" element={<Login/>} />
+            <Route path="/Users/ManageRoles" element={<UserManager/>} />
             </Routes>
           </main>
         </div>
