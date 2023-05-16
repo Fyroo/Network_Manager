@@ -63,7 +63,7 @@ const LSW = () => {
       gridRow={1}
       gap="23px">
 
-        <AnimatedBox gridColumn="span 3" gridRow="span 1" minHeight={'80vh'} 
+        <AnimatedBox gridColumn="span 3" gridRow="span 1" height={'83vh'} 
         style={boxAnimation}
         sx={{
           backgroundColor: colors.blueAccent[500],

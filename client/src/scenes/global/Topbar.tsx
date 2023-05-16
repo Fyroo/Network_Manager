@@ -5,6 +5,8 @@ import InputBase from "@mui/material/InputBase";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import SearchIcon from "@mui/icons-material/Search";
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
 
 const Topbar:React.FC = () => {
   // Retrieve the current theme object
@@ -50,6 +52,13 @@ const Topbar:React.FC = () => {
             <LightModeOutlinedIcon />
           )}
         </IconButton>
+        <IconButton href="/profile-settings">
+            <SettingsOutlinedIcon/>
+        </IconButton>
+       
+        <IconButton href="/logout">
+        <ExitToAppOutlinedIcon/>
+          </IconButton>
       </Box>
     </Box>
   );

@@ -6,10 +6,16 @@ import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme"; 
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined"; 
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined"; 
-import PublicIcon from '@mui/icons-material/Public'; 
+import HubOutlinedIcon from '@mui/icons-material/HubOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
+import DnsOutlinedIcon from '@mui/icons-material/DnsOutlined';
+import TroubleshootOutlinedIcon from '@mui/icons-material/TroubleshootOutlined';
+import CableOutlinedIcon from '@mui/icons-material/CableOutlined';
+import SupervisedUserCircleOutlinedIcon from '@mui/icons-material/SupervisedUserCircleOutlined';
+import ShieldOutlinedIcon from '@mui/icons-material/ShieldOutlined';
+import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 
 const Item = ({ title, to, icon, selected, setSelected }: { title: any; to: any; icon:any; selected:any; setSelected:any}) => { 
   const theme = useTheme(); 
@@ -63,7 +69,7 @@ const Sidebar = () => {
           > 
             {!isCollapsed && ( 
               <Box display="flex" justifyContent="space-between" alignItems="center" ml="15px" > 
-                <Typography variant="h4" color={colors.grey[100]}> ADMINIS </Typography> 
+                <Typography variant="h4" color={colors.grey[100]}> OptiDoc </Typography> 
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}> 
                   <MenuOutlinedIcon /> 
                 </IconButton> 
@@ -73,25 +79,36 @@ const Sidebar = () => {
           {!isCollapsed && ( 
             <Box mb="25px"> 
               <Box textAlign="center" paddingTop={"20px"}> 
-                <Typography variant="h2" color={colors.grey[100]} fontWeight="bold" sx={{ m: "10px 0 0 0" }} > Nom Utilisateur </Typography> 
-                <Typography variant="h5" color={colors.greenAccent[500]}> Niveau d'Access </Typography> 
+                <Typography variant="h2" color={colors.grey[100]} fontWeight="bold" sx={{ m: "10px 0 0 0" }} > User </Typography> 
+                <Typography marginTop={'10px'} variant="h4" color={colors.primary[200]}> Niveaux d'access :</Typography> 
+                <Box display={'flex'} flexDirection={'row'} justifyContent={'center'}>
+                <Typography variant="h5" color={colors.redAccent[500]} marginRight={'15px'}> Administrateur </Typography> 
+                <ShieldOutlinedIcon sx={{color:colors.redAccent[500]}}/>
+                </Box>
+                
               </Box> 
             </Box> 
           )} 
           <Box  paddingLeft={isCollapsed ? undefined : "10%"}> 
-            <Item title="Metro" to="/" icon={<HomeOutlinedIcon />} selected={selected} setSelected={setSelected} /> 
-            <Item title="LSW" to="/LSW" icon={<PublicIcon />} selected={selected} setSelected={setSelected} /> 
-            <Item title="Breakout" to="/Breakout" icon={<PublicIcon />} selected={selected} setSelected={setSelected} /> 
-            <SubMenu title="Backhaul" icon={<PublicIcon />} > 
-              <Item title="144 FO" to="/Backhaul/144FO" icon={<PublicIcon />} selected={selected} setSelected={setSelected} ></Item> 
-              <Item title="72 FO" to="/Backhaul/72FO" icon={<PublicIcon />} selected={selected} setSelected={setSelected} ></Item> 
-              <Item title="48 FO" to="/Backhaul/48FO" icon={<PublicIcon />} selected={selected} setSelected={setSelected} ></Item> 
-              <Item title="24 FO" to="/Backhaul/24FO" icon={<PublicIcon />} selected={selected} setSelected={setSelected} ></Item> 
-            </SubMenu> 
-            <Box height={isCollapsed ?'57vh': "43vh"}></Box>
-            <Item title="User Management" to="/user-management" icon={<AccountCircleOutlinedIcon />} selected={selected} setSelected={setSelected} />
-            <Item title="Profile Settings" to="/profile-settings" icon={<SettingsOutlinedIcon />} selected={selected} setSelected={setSelected} />
-            <Item title="Log Out" to="/logout" icon={<ExitToAppOutlinedIcon />} selected={selected} setSelected={setSelected} />
+            <Item title="Metro" to="/" icon={<HubOutlinedIcon />} selected={selected} setSelected={setSelected} /> 
+            <Item title="LSW" to="/LSW" icon={<DnsOutlinedIcon />} selected={selected} setSelected={setSelected} /> 
+            <Item title="Breakout" to="/Breakout" icon={<TroubleshootOutlinedIcon />} selected={selected} setSelected={setSelected} /> 
+            {!isCollapsed ? (            <SubMenu title="Backhaul" icon={<CableOutlinedIcon />}> 
+              <Item title="144 FO" to="/Backhaul/144FO" icon={<CableOutlinedIcon/>} selected={selected} setSelected={setSelected} ></Item> 
+              <Item title="72 FO" to="/Backhaul/72FO" icon={<CableOutlinedIcon/>} selected={selected} setSelected={setSelected} ></Item> 
+              <Item title="48 FO" to="/Backhaul/48FO" icon={<CableOutlinedIcon/>} selected={selected} setSelected={setSelected} ></Item> 
+              <Item title="24 FO" to="/Backhaul/24FO" icon={<CableOutlinedIcon/>} selected={selected} setSelected={setSelected} ></Item> 
+            </SubMenu>  ):(
+              <IconButton  onClick={() => setIsCollapsed(!isCollapsed)} >
+                <CableOutlinedIcon/>
+              </IconButton>
+              
+            )}
+
+            
+
+            <Item title="Gestion des utilisateurs" to="/Users/ManageRoles" icon={<AccountCircleOutlinedIcon sx={{color:colors.redAccent[500]}} />} selected={selected} setSelected={setSelected} />
+
           </Box> 
         </Menu> 
       </ProSidebar> 
