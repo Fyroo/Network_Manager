@@ -10,9 +10,11 @@ import { Flex } from "@chakra-ui/react";
 const EditLswPortField = ({
   portId,
   portadd,
+  role
 }: {
   portId: any;
   portadd: string;
+  role: string;
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const theme = useTheme();
@@ -30,13 +32,14 @@ const EditLswPortField = ({
   });
 
   useEffect(() => {
+    console.log(role)
     setIsDataLoaded(false);
     getPort();
   }, [portId]);
 
   function handelSaveClick() {
     axios
-      .put(`http://localhost:3001/updatelswport/${portId}`, {
+      .put(`/api/updatelswport/${portId}`, {
         address: portAddress,
         client: client,
         breakout: portBreakout,
@@ -52,7 +55,7 @@ const EditLswPortField = ({
   const getPort = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:3001/lswport/${portId}`
+        `/api/lswport/${portId}`
       );
       const portData = response.data[0];
       setClient(portData.client);
@@ -78,7 +81,7 @@ const EditLswPortField = ({
           <IconButton
             aria-label="save"
             sx={{ color: colors.blueAccent[100] }}
-            disabled={portAddress === "No Port Selected" || !isEditing}
+            disabled={portAddress === "No Port Selected" || !isEditing || role=='Utilisateur'}
             onClick={() => handelSaveClick()}
           >
             <SaveIcon />
@@ -87,7 +90,7 @@ const EditLswPortField = ({
           <IconButton
             aria-label="edit"
             sx={{ color: colors.blueAccent[100] }}
-            disabled={portAddress === "No Port Selected" || isEditing}
+            disabled={portAddress === "No Port Selected" || isEditing || role==='Utilisateur'}
             onClick={() => setIsEditing(true)}
           >
             <EditIcon />

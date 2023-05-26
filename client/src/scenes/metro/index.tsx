@@ -20,7 +20,7 @@ import EditPortField from "./EditPortField";
 import SaveIcon from "@mui/icons-material/Save";
 import { animated, useSpring } from "@react-spring/web";
 
-const Metro = () => {
+const Metro = ({role}:{role:any}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [open, setOpen] = useState(false);
@@ -71,7 +71,7 @@ const Metro = () => {
             <Button
               onClick={() => {
                 axios
-                  .delete(`http://localhost:3001/deletemetro/${routerName}`)
+                  .delete(`/api/deletemetro/${routerName}`)
                   .then(() => {
                     handleClose();
                     window.location.reload();
@@ -119,7 +119,7 @@ const Metro = () => {
 
 
   const getMetro = () => {
-    axios.get("http://localhost:3001/metro").then((response) => {
+    axios.get("/api/metro").then((response) => {
       setMetroList(response.data);
     });
   };
@@ -154,7 +154,7 @@ const Metro = () => {
         title="Metro"
         subtitle="Description"
         addlink="/Metro/add"
-        withbtn={true}
+        withbtn={role==='Administrateur'} 
         variant="2"
       />
       <Box
@@ -200,7 +200,7 @@ const Metro = () => {
               </Box>
               <Box sx={{ marginTop: "15px" }}>
                 {portAddress !== "No Port Selected" && (
-                  <EditPortField portId={portId} />
+                  <EditPortField portId={portId} role={role} />
                 )}
               </Box>
             </AnimatedBox>
@@ -257,8 +257,7 @@ const Metro = () => {
                   <IconButton
                     aria-label="edit"
                     sx={{ color: colors.grey[200] }}
-                    disabled={
-                      routerName === "No Router Selected" ? true : false
+                    disabled={((routerName === 'No Router Selected')|| (role==='Utilisateur'))
                     }
                   >
                     <EditIcon />
@@ -268,7 +267,7 @@ const Metro = () => {
                   aria-label="delete"
                   sx={{ color: colors.redAccent[400] }}
                   onClick={handelMetroDelete}
-                  disabled={routerName === "No Router Selected" ? true : false}
+                  disabled={((routerName === 'No Router Selected')|| !(role==='Administrateur')) }
                 >
                   <DeleteIcon />
                 </IconButton>

@@ -33,7 +33,7 @@ const PortsMap = ({
   }, [block]);
 
   const getPorts = () => {
-    axios.get(`http://localhost:3001/ports/${block.id}`).then((response) => {
+    axios.get(`/api/ports/${block.id}`).then((response) => {
       setPortList(response.data);
       if (!checkCalledRef.current) {
         check(response.data, block);
@@ -43,7 +43,7 @@ const PortsMap = ({
   };
 
   const createPort = async (key: any, i: any) => {
-    await axios.post("http://localhost:3001/createport", {
+    await axios.post("/api/createport", {
       blockid: key,
       slot: i,
     });

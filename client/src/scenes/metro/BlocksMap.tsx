@@ -25,7 +25,7 @@ const BlocksMap = ({ parentCallback ,selectedMetro}: { selectedMetro:any;parentC
   });
   const enableBlock = async (blockId: number) => {
     try {
-      await axios.put(`http://localhost:3001/updateblocks/${blockId}`, { state: 1 });
+      await axios.put(`/api/updateblocks/${blockId}`, { state: 1 });
       console.log('Block state updated');
       setBlockState({ ...blockState, [blockId]: 1 });
     } catch (error) {
@@ -34,14 +34,14 @@ const BlocksMap = ({ parentCallback ,selectedMetro}: { selectedMetro:any;parentC
   };
   const getBlocks = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/blocks/${selectedMetro.id}`);
+      const response = await axios.get(`/api/blocks/${selectedMetro.id}`);
       setBlocksList(response.data);
     } catch (error) {
       console.error(error);
     }
   };
   const createBlocks = async (props:any,i:any,length:any) => {
-    await axios.post("http://localhost:3001/createblock", 
+    await axios.post("/api/createblock", 
     { name: `${props.name}-${i}`, metroid: props.id, state: false ,slot:i,length:length});
    console.log('Block Created');
  };

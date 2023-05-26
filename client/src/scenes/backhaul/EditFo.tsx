@@ -9,7 +9,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { AnimatedTypography } from "../../components/AnimatedComponents";
 
-const EditFo = ({ selectedFo,foName }: { selectedFo: any; foName:any }) => {
+const EditFo = ({ selectedFo,foName,role }: { selectedFo: any; foName:any ;role:string}) => {
   const [isEditing, setIsEditing] = useState(false);
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -40,13 +40,13 @@ const EditFo = ({ selectedFo,foName }: { selectedFo: any; foName:any }) => {
     if (foName==="No FO Selected"){
       return ;
     }else{
-      axios.delete(`http://localhost:3001/deleteFO/${id}`);
+      axios.delete(`/api/deleteFO/${id}`);
       window.location.reload();
     }
   };
   function handelSaveClick() {console.log(selectedFo.ID);
         axios
-      .put(`http://localhost:3001/updatefo/${selectedFo.ID}`, {
+      .put(`/api/updatefo/${selectedFo.ID}`, {
         name: name,
         client: client,
         pos: pos,
@@ -94,7 +94,7 @@ const EditFo = ({ selectedFo,foName }: { selectedFo: any; foName:any }) => {
                   <IconButton
                     aria-label="save"
                     sx={{ color: colors.blueAccent[100] }}
-                    disabled={foName === "No FO Selected" || !isEditing}
+                    disabled={foName === "No FO Selected" || !isEditing || role=='Utilisateur'}
                     onClick={() => handelSaveClick()}
                   >
                     <SaveIcon />
@@ -103,7 +103,7 @@ const EditFo = ({ selectedFo,foName }: { selectedFo: any; foName:any }) => {
                   <IconButton
                     aria-label="edit"
                     sx={{ color: colors.blueAccent[100] }}
-                    disabled={foName === "No FO Selected" || isEditing}
+                    disabled={foName === "No FO Selected" || isEditing || role=='Utilisateur'}
                     onClick={() => setIsEditing(true)}
                   >
                     <EditIcon />
@@ -112,7 +112,7 @@ const EditFo = ({ selectedFo,foName }: { selectedFo: any; foName:any }) => {
             aria-label="edit"
             onClick={()=>handelLSWDelete(selectedFo.ID)}
             sx={{ color: colors.redAccent[400] }}
-            disabled={foName === "No FO Selected" ? true : false}>
+            disabled={foName === "No FO Selected"|| !(role=='Administrateur')}>
             <DeleteIcon />
           </IconButton>
           </Box>
@@ -249,9 +249,6 @@ const EditFo = ({ selectedFo,foName }: { selectedFo: any; foName:any }) => {
                     </Box>
 
                     <Box sx={{ mt: "20px" }}>
-                      {/* <Button variant="contained" color="primary" onClick={handelSaveClick}>
-                            Save
-                          </Button> */}
                     </Box>
                   </Box>
                 ) : null}

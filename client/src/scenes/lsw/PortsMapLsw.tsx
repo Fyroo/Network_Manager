@@ -26,7 +26,7 @@ const lswPortsMapLsw = ({ block, parentCallback }: { parentCallback: (childData:
     }, [block]);
 
     const getlswPorts =  () => {
-        axios.get(`http://localhost:3001/lswports/${block.id}`).then((response)=>{
+        axios.get(`/api/lswports/${block.id}`).then((response)=>{
             setPortList(response.data);
             if (!checkCalledRef.current) { 
                 check((response.data),block);
@@ -38,7 +38,7 @@ const lswPortsMapLsw = ({ block, parentCallback }: { parentCallback: (childData:
     };
 
     const createPort = async (key: any, i: any) => {
-        await axios.post("http://localhost:3001/createlswport",
+        await axios.post("/api/createlswport",
             { blockid: key, slot: i });
         console.log('Port Created');
     };
@@ -75,7 +75,10 @@ const lswPortsMapLsw = ({ block, parentCallback }: { parentCallback: (childData:
 
     function Port(props: any) {
         return (
-            <Box flexDirection={'column'}>
+            <Box flexDirection={'column'} sx={{            borderRadius: '10px',
+            borderColor: colors.primary[100],
+            margin: '10px',
+            boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',}}>
                 <Box display={'flex'} alignItems={'center'} justifyContent={'center'}>
                     <Button style={{ padding: '5' }} onClick={() => handelShowClick(props)}>
                         <PortIcon/>
@@ -104,7 +107,7 @@ const lswPortsMapLsw = ({ block, parentCallback }: { parentCallback: (childData:
           </Box>
         </animated.div>
         <animated.div style={dataAnimation}>
-          <Box display="flex" height="auto" flexDirection="row">{dataPort}</Box>
+          <Box display="flex" height="auto" flexDirection="row" >{dataPort}</Box>
         </animated.div>
       </Box>
     );

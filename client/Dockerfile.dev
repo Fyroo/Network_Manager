@@ -1,0 +1,19 @@
+FROM node:18.14.2
+
+# Set the working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json (if exists) to the working directory
+COPY package.json package-lock.json* ./
+
+# Install dependencies
+RUN npm install
+
+# Copy all files to the working directory
+COPY . .
+
+# Expose the port that your Vite app will run on
+EXPOSE 5173
+
+# Start the development server
+CMD ["npm", "run", "dev"]

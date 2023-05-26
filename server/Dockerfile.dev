@@ -1,0 +1,16 @@
+FROM node:18.14.2
+WORKDIR /app
+COPY ./package.json ./
+RUN npm i
+COPY . .
+EXPOSE 3001
+
+# Install build dependencies
+RUN apt-get update && \
+    apt-get install -y build-essential && \
+    apt-get clean
+
+# Rebuild bcrypt
+RUN npm rebuild bcrypt --build-from-source
+
+CMD ["npm", "run", "dev"]

@@ -13,7 +13,7 @@ import { useSpring, animated } from "react-spring";
 import { AnimatedTypography } from '../../components/AnimatedComponents'
 import EditLswPortField from './EditLswPortField'
 
-const LSW = () => {
+const LSW = ({role}:{role:any}) => {
   const [lswName, setLswName] = useState("No Router Selected");
   const [selectedLsw, setselectedLsw] = useState([]);
   const [lswModel, setLswModel] = useState("");
@@ -29,6 +29,9 @@ const LSW = () => {
     to: { backgroundColor: colors.blueAccent[500] },
     delay: 300,
   });
+  useEffect(() => {
+    console.log(role)
+  },[]);
   function getPort(childData:any){
     setPortAddress(childData.Address);
     setPortId(childData.ID);
@@ -46,14 +49,14 @@ const LSW = () => {
     if (lswName==="No Router Selected"){
       return ;
     }else{
-      axios.delete(`http://localhost:3001/deleteLSW/${id}`);
+      axios.delete(`/api/deleteLSW/${id}`);
       window.location.reload();
     }
   };
 
   return (
 <Box m={"20px"}>
-  <Header title="LSW" subtitle="Description" addlink='/LSW/add' withbtn={true} variant={''}/>
+  <Header title="LSW" subtitle="Description" addlink='/LSW/add' withbtn={role==='Administrateur'} variant={''}/>
 
       <Box
       
@@ -107,10 +110,10 @@ const LSW = () => {
         </AnimatedTypography>
         <Box   justifyContent="space-between">
         
-        <Link to={lswName === 'No Router Selected' ?"#":"/LSW/edit"} 
+        <Link to={(lswName === 'No Router Selected')|| (role==='Administrateur') ?"#":"/LSW/edit"} 
             state={{lswName,lswModel,lswUplink,lswId}}>
             <IconButton aria-label="delete" sx={{color:colors.grey[200]}}
-            disabled={lswName === 'No Router Selected' ? true:false}>
+            disabled={((lswName === 'No Router Selected')|| (role==='Utilisateur'))}>
               <EditIcon/>
             </IconButton>
             </Link>
@@ -118,7 +121,7 @@ const LSW = () => {
 
             <IconButton aria-label="edit" sx={{color:colors.redAccent[400]}}
             onClick={()=>handelLSWDelete(lswId)}
-            disabled={lswName === 'No Router Selected' ? true:false}>
+            disabled={((lswName === 'No Router Selected')|| !(role==='Administrateur')) }>
               <DeleteIcon/>
             </IconButton>
 
@@ -149,7 +152,7 @@ const LSW = () => {
              
               <Box sx={{ marginTop: "15px" }}>
                 {portAddress !== "No Port Selected" && (
-                  <EditLswPortField portId={portId} portadd={portAddress} />
+                  <EditLswPortField portId={portId} portadd={portAddress} role={role} />
                 )}
               </Box>
             </AnimatedBox>

@@ -6,8 +6,6 @@ import {
   MenuItem,
   Select,
   Typography,
-} from "@mui/material";
-import {
   Button,
   CircularProgress,
   Dialog,
@@ -15,12 +13,13 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
+  Grid,
 } from "@mui/material";
-import { useTheme } from '@mui/system'
-import { tokens } from '../../theme'
+import { useTheme } from "@mui/system";
+import { tokens } from "../../theme";
 import axios from "axios";
 import RegArray from "./RegArray";
-
+import Header from "../../components/Header";
 
 
 interface Props {
@@ -65,7 +64,7 @@ const CreateCentralDialog: React.FC<Props> = ({ open, onClose }) => {
     setLoading(true);
     try {
       const response = await axios.post<{ data: string }>(
-        `http://localhost:3001/createcentral/${name}`,
+        `/api/createcentral/${name}`,
         {}
       );
       const newCentralId = response.data;
@@ -76,7 +75,7 @@ const CreateCentralDialog: React.FC<Props> = ({ open, onClose }) => {
         for (let j = 0; j < reglette.length; j++) {
           for (let k = 0; k < regNames.length; k++) {
             const res = await axios.post(
-              "http://localhost:3001/createregdata",
+              "/api/createregdata",
               {
                 name: regNames[k],
                 centralid: newCentralId,
@@ -134,7 +133,6 @@ const CreateCentralDialog: React.FC<Props> = ({ open, onClose }) => {
   );
 };
 
-
 const CreateCentralButton = () => {
   const [open, setOpen] = useState(false);
 
@@ -153,17 +151,19 @@ const CreateCentralButton = () => {
 };
 
 const Breakout = () => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   interface Central {
-  id: number;
-  name: string;
-}
+    id: number;
+    name: string;
+  }
 
-interface RegData {
-  id: number;
-  reg_id: string;
-  created_at: string;
-  updated_at: string;
-}
+  interface RegData {
+    id: number;
+    reg_id: string;
+    created_at: string;
+    updated_at: string;
+  }
   const [centralList, setCentralList] = useState<Central[]>([]);
   const [regData, setRegData] = useState<RegData[]>([]);
   const [selectedItem1, setSelectedItem1] = useState("");
@@ -175,12 +175,12 @@ interface RegData {
   }, []);
 
   const getCentral = () => {
-    axios.get("http://localhost:3001/central").then((response) => {
+    axios.get("/api/central").then((response) => {
       setCentralList(response.data);
       console.log(response.data);
     });
   };
-  const handleChange1 = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+  const handleChange1 = (event: { target: { value: React.SetStateAction<string> } }) => {
     console.log(event.target.value);
     setSelectedItem1(event.target.value);
     setSelectedItem2("");
@@ -188,18 +188,18 @@ interface RegData {
     setRegData([]);
   };
 
-  const handleChange2 = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+  const handleChange2 = (event: { target: { value: React.SetStateAction<string> } }) => {
     setSelectedItem2(event.target.value);
     setSelectedItem3("");
     setRegData([]);
   };
 
-  const handleChange3 = (event: { target: { value: React.SetStateAction<string>; }; }) => {
+  const handleChange3 = (event: { target: { value: React.SetStateAction<string> } }) => {
     console.log(selectedItem1);
     console.log(selectedItem2);
     console.log(event.target.value);
     axios
-      .get(`http://localhost:3001/regdata/${selectedItem1}?armoirid=${selectedItem2}&regid=${event.target.value}`)
+      .get(`/api/regdata/${selectedItem1}?armoirid=${selectedItem2}&regid=${event.target.value}`)
       .then((response) => {
         console.log(response.data);
         setRegData(response.data);
@@ -211,79 +211,103 @@ interface RegData {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100vh",
-      }}
-    >
-      <CreateCentralButton />
-      <FormControl variant="outlined" sx={{ mr: 2 }}>
-        <InputLabel id="dropdown1-label">Central</InputLabel>
-        <Select
-          labelId="dropdown1-label"
-          id="dropdown1"
-          value={selectedItem1}
-          onChange={handleChange1}
-          sx={{ minWidth: "150px" }}
-          displayEmpty
-        >
-          <MenuItem value="">Select a Central</MenuItem>
-          {centralList.map((central) => (
-            <MenuItem value={central.id} key={central.id}>
-              {central.name}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-      {selectedItem1 && (
+    <Box m={'20px'}>
+      <Header title={"Breakout"} subtitle={""} addlink={""} withbtn={false} variant={""} />
+
+      <Box
+      
+      display={'flex'}
+      flexDirection={'column'}
+      justifyContent={'start'}
+      width={'100%'}
+      sx={{backgroundColor:colors.blueAccent[700]}}
+      borderRadius={'10px'}
+      p={'20px'}
+      mb={'20px'}
+
+      >
+
+<Box mb={'10px'}>
+        <CreateCentralButton />
+        </Box >
         <FormControl variant="outlined" sx={{ mr: 2 }}>
-          <InputLabel id="dropdown2-label">Armoire</InputLabel>
+          <Typography>Central</Typography>
           <Select
-            labelId="dropdown2-label"
-            id="dropdown2"
-            value={selectedItem2}
-            onChange={handleChange2}
-            sx={{ minWidth: "150px" }}
+            labelId="dropdown1-label"
+            id="dropdown1"
+            value={selectedItem1}
+            onChange={handleChange1}
+            sx={{ maxWidth: "100vw" }}
             displayEmpty
           >
-            <MenuItem value="">Select an Armoire</MenuItem>
-            <MenuItem value="AR1">Armoire 1</MenuItem>
-            <MenuItem value="AR2">Armoire 2</MenuItem>
-            <MenuItem value="AR3">Armoire 3</MenuItem>
-            <MenuItem value="AR4">Armoire 4</MenuItem>
-            <MenuItem value="AR5">Armoire 5</MenuItem>
+            <MenuItem value="">Select a Central</MenuItem>
+            {centralList.map((central) => (
+              <MenuItem value={central.id} key={central.id}>
+                {central.name}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
-      )}
-      {selectedItem2 && (
-        <FormControl variant="outlined">
-          <InputLabel id="dropdown3-label">Reglette</InputLabel>
-          <Select
-            labelId="dropdown3-label"
-            id="dropdown3"
-            value={selectedItem3}
-            onChange={handleChange3}
-            sx={{ minWidth: "150px" }}
-            displayEmpty
-          >
-            <MenuItem value="">Select a Reglette</MenuItem>
-            <MenuItem value="REG1">Reglette 1</MenuItem>
-            <MenuItem value="REG2">Reglette 2</MenuItem>
-            <MenuItem value="REG3">Reglette 3</MenuItem>
-            <MenuItem value="REG4">Reglette 4</MenuItem>
-            <MenuItem value="REG5">Reglette 5</MenuItem>
-            <MenuItem value="REG6">Reglette 6</MenuItem>
-            <MenuItem value="REG7">Reglette 7</MenuItem>
-            <MenuItem value="REG8">Reglette 8</MenuItem>
-            <MenuItem value="REG9">Reglette 9</MenuItem>
-            <MenuItem value="REG10">Reglette 10</MenuItem>
-          </Select>
-        </FormControl>
-      )}
-      <RegArray inputData={regData}/>
+        {selectedItem1 && (
+          <FormControl variant="outlined" sx={{ mr: 2 }}>
+            <Typography>Armoire</Typography>
+            <Select
+              labelId="dropdown2-label"
+              id="dropdown2"
+              value={selectedItem2}
+              onChange={handleChange2}
+              sx={{ maxWidth: "100vw" }}
+              displayEmpty
+            >
+              <MenuItem value="">Select an Armoire</MenuItem>
+              <MenuItem value="AR1">Armoire 1</MenuItem>
+              <MenuItem value="AR2">Armoire 2</MenuItem>
+              <MenuItem value="AR3">Armoire 3</MenuItem>
+              <MenuItem value="AR4">Armoire 4</MenuItem>
+              <MenuItem value="AR5">Armoire 5</MenuItem>
+            </Select>
+          </FormControl>
+        )}
+        {selectedItem2 && (
+          <FormControl variant="outlined" sx={{ mr: 2 }}>
+            <Typography>Reglette</Typography>
+            <Select
+              labelId="dropdown3-label"
+              id="dropdown3"
+              value={selectedItem3}
+              onChange={handleChange3}
+              fullWidth
+              displayEmpty
+            >
+              <MenuItem value="">Select a Reglette</MenuItem>
+              <MenuItem value="REG1">Reglette 1</MenuItem>
+              <MenuItem value="REG2">Reglette 2</MenuItem>
+              <MenuItem value="REG3">Reglette 3</MenuItem>
+              <MenuItem value="REG4">Reglette 4</MenuItem>
+              <MenuItem value="REG5">Reglette 5</MenuItem>
+              <MenuItem value="REG6">Reglette 6</MenuItem>
+              <MenuItem value="REG7">Reglette 7</MenuItem>
+              <MenuItem value="REG8">Reglette 8</MenuItem>
+              <MenuItem value="REG9">Reglette 9</MenuItem>
+              <MenuItem value="REG10">Reglette 10</MenuItem>
+            </Select>
+          </FormControl>
+        )}
+      </Box>
+      <Box
+            display={'flex'}
+            flexDirection={'column'}
+            justifyContent={'start'}
+            width={'100%'}
+            sx={{backgroundColor:colors.blueAccent[700]}}
+            borderRadius={'10px'}
+>
+      <Box maxHeight="400px" overflow="auto" m={2}
+      >
+        <RegArray inputData={regData} />
+      </Box>
+      </Box>
+
     </Box>
   );
 };

@@ -9,7 +9,7 @@ import { useSpring, animated } from "react-spring";
 import EditFo from "./EditFo";
 
 
-const Backhaul = ({ foVarient }: { foVarient: number }) => {
+const Backhaul = ({ foVarient,role }: { foVarient: number;role:string}) => {
   const [foName, setfoName] = useState("No FO Selected");
   const [selectedFo, setselectedFo] = useState([]);
   const [foData, setFoData] = useState<[]>();
@@ -22,7 +22,7 @@ const Backhaul = ({ foVarient }: { foVarient: number }) => {
     delay: 300,
   });
   useEffect(() => {
-    axios.get(`http://localhost:3001/fo/${foVarient}`).then((response) => {
+    axios.get(`/api/fo/${foVarient}`).then((response) => {
       setFoData(response.data);
     });
   }, [foVarient]);
@@ -43,7 +43,7 @@ const Backhaul = ({ foVarient }: { foVarient: number }) => {
         title={foVarient.toString()}
         subtitle="Description"
         addlink="/Backhaul/Add"
-        withbtn={true}
+        withbtn={role ==='Administrateur'}
         variant={""}
       />
 
@@ -101,7 +101,7 @@ const Backhaul = ({ foVarient }: { foVarient: number }) => {
             flexDirection: "column",
             padding: "20px",
           }}>
-          <EditFo selectedFo={selectedFo} foName={foName}/>
+          <EditFo selectedFo={selectedFo} foName={foName} role={role}/>
         </AnimatedBox>
       </Box>
     </Box>

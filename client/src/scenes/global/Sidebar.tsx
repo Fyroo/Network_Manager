@@ -4,12 +4,11 @@ import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom"; 
 import "react-pro-sidebar/dist/css/styles.css"; 
 import { tokens } from "../../theme"; 
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined"; 
+
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined"; 
 import HubOutlinedIcon from '@mui/icons-material/HubOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
+
 import DnsOutlinedIcon from '@mui/icons-material/DnsOutlined';
 import TroubleshootOutlinedIcon from '@mui/icons-material/TroubleshootOutlined';
 import CableOutlinedIcon from '@mui/icons-material/CableOutlined';
@@ -33,7 +32,7 @@ const Item = ({ title, to, icon, selected, setSelected }: { title: any; to: any;
   ); 
 }; 
 
-const Sidebar = () => { 
+const Sidebar = ({username,role}:{username:any;role:any}) => { 
   const theme = useTheme(); 
   const colors = tokens(theme.palette.mode); 
   const [isCollapsed, setIsCollapsed] = useState(false); 
@@ -79,18 +78,21 @@ const Sidebar = () => {
           {!isCollapsed && ( 
             <Box mb="25px"> 
               <Box textAlign="center" paddingTop={"20px"}> 
-                <Typography variant="h2" color={colors.grey[100]} fontWeight="bold" sx={{ m: "10px 0 0 0" }} > User </Typography> 
+                <Typography variant="h2" color={colors.grey[100]} fontWeight="bold" sx={{ m: "10px 0 0 0" }} > {username} </Typography> 
                 <Typography marginTop={'10px'} variant="h4" color={colors.primary[200]}> Niveaux d'access :</Typography> 
                 <Box display={'flex'} flexDirection={'row'} justifyContent={'center'}>
-                <Typography variant="h5" color={colors.redAccent[500]} marginRight={'15px'}> Administrateur </Typography> 
-                <ShieldOutlinedIcon sx={{color:colors.redAccent[500]}}/>
+                <Typography variant="h5" color={role === 'Utilisateur' ? colors.greenAccent[500] : role === 'Modérateur' ? colors.blueAccent[500] : colors.redAccent[500]} marginRight={'15px'}> {role} </Typography> 
+                {role === 'Utilisateur'&&(<SupervisedUserCircleOutlinedIcon sx={{color:colors.greenAccent[500]}}/>)}
+                {role === 'Modérateur'&&(<ShieldOutlinedIcon sx={{color:colors.blueAccent[500]}}/>)}
+                {role === 'Administrateur'&&(<AdminPanelSettingsOutlinedIcon sx={{color:colors.redAccent[500]}}/>)}
+                
                 </Box>
                 
               </Box> 
             </Box> 
           )} 
           <Box  paddingLeft={isCollapsed ? undefined : "10%"}> 
-            <Item title="Metro" to="/" icon={<HubOutlinedIcon />} selected={selected} setSelected={setSelected} /> 
+            <Item title="Metro" to="/Metro" icon={<HubOutlinedIcon />} selected={selected} setSelected={setSelected} /> 
             <Item title="LSW" to="/LSW" icon={<DnsOutlinedIcon />} selected={selected} setSelected={setSelected} /> 
             <Item title="Breakout" to="/Breakout" icon={<TroubleshootOutlinedIcon />} selected={selected} setSelected={setSelected} /> 
             {!isCollapsed ? (            <SubMenu title="Backhaul" icon={<CableOutlinedIcon />}> 
@@ -107,7 +109,7 @@ const Sidebar = () => {
 
             
 
-            <Item title="Gestion des utilisateurs" to="/Users/ManageRoles" icon={<AccountCircleOutlinedIcon sx={{color:colors.redAccent[500]}} />} selected={selected} setSelected={setSelected} />
+            {role === 'Administrateur' &&<Item title="Gestion des utilisateurs" to="/Users/ManageRoles" icon={<AccountCircleOutlinedIcon sx={{color:colors.redAccent[500]}} />} selected={selected} setSelected={setSelected} />}
 
           </Box> 
         </Menu> 

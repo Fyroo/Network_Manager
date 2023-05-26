@@ -14,7 +14,7 @@ const LSWAdd = () => {
   const [model, setModel] = useState("");
 
   const addLSW = () => {
-    axios.post("http://localhost:3001/createLSW",
+    axios.post("/api/createLSW",
     { name: name, uplink:uplink, model: model }).then(() => { console.log('yes') })
     
   };

@@ -3,18 +3,168 @@ const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
 const DbAdmin = require("./DbAdmin");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
-app.use(cors());
+app.use(cors({
+  origin: "http://client", // Replace with your React app's URL
+  methods: ["GET", "POST","DELETE","PUT"],
+  credentials: true,
+}));
+
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(
+  session({
+    key: "id",
+    secret: "subscribe",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      expires: 60 * 60 * 1000,
+    },
+  })
+);
+
 app.use(express.json());
-const login = DbAdmin.info;
+app.use(express.urlencoded({ extended: true }));
+
 const db = mysql.createConnection({
-  user: login.user,
-  host: login.host,
-  password: login.password,
-  database: login.database,
-  insecureAuth: login.insecureAuth,
+  host: 'mysql_db', 
+  user: 'root', 
+  password: 'MYSQL_ROOT_PASSWORD', 
+  database: 'optidocdb' 
+})
+
+////////////////////
+const login = DbAdmin.info;
+// const db = mysql.createConnection({
+//   user: login.user,
+//   host: login.host,
+//   password: login.password,
+//   database: login.database,
+//   insecureAuth: login.insecureAuth,
+// });
+
+app.post("/register", (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  bcrypt.hash(password, saltRounds, (err, hash) => {
+    if (err) {
+      console.log(err);
+    }
+
+    db.query(
+      "INSERT INTO user (username, password) VALUES (?,?)",
+      [username, hash],
+      (err, result) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.sendStatus(200);
+        }
+      }
+    );
+  });
 });
 
+app.get("/logincheck", (req, res) => {
+  if (req.session.user) {
+    res.send({ loggedIn: true, user: req.session.user });
+    console.log({ loggedIn: true, user: req.session.user });
+  } else {
+    res.send({ loggedIn: false });
+    console.log({ loggedIn: false });
+  }
+});
+
+app.post("/login", (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  db.query(
+    "SELECT * FROM user WHERE username = ?",
+    username,
+    (err, result) => {
+      if (err) {
+        res.send({ err: err });
+      }
+
+      if (result.length > 0) {
+        bcrypt.compare(password, result[0].password, (error, response) => {
+          if (response) {
+            req.session.user = result;
+            console.log(req.session.user);
+            res.send(result);
+          } else {
+            res.send({ message: "Wrong username/password combination!" });
+          }
+        });
+      } else {
+        res.send({ message: "User doesn't exist" });
+      }
+    }
+  );
+});
+app.get("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+///////////////////
+app.get("/users", (req, res) => {
+  db.query("SELECT * FROM user", (err, result) => {
+    if (err) {
+      res.status(500).send({ error: "Failed to fetch users from the database" });
+    } else {
+      res.status(200).send(result);
+    }
+  });
+});
+
+app.put("/users/:id", (req, res) => {
+  const userId = req.params.id;
+  const newRole = req.body.role;
+
+  db.query(
+    "UPDATE user SET role = ? WHERE id = ?",
+    [newRole, userId],
+    (err, result) => {
+      if (err) {
+        res.status(500).send({ error: "Failed to update the user's role" });
+      } else {
+        res.status(200).send({ message: "User role updated successfully" });
+      }
+    }
+  );
+});
+app.put("/user/:id", (req, res) => {
+  const userId = req.params.id;
+  const { username, email, gender, birthday } = req.body;
+
+  db.query(
+    "UPDATE user SET username = ?, email = ?, gender = ?, birthday = ? WHERE id = ?",
+    [username, email, gender, birthday, userId],
+    (err, result) => {
+      if (err) {
+        res.status(500).send({ error: "Failed to update the user's information" });
+      } else {
+        res.status(200).send({ message: "User information updated successfully" });
+      }
+    }
+  );
+});
+
+//////////////////
 app.get("/metro", (req, res) => {
   db.query("SELECT * FROM metro", (err, result) => {
     if (err) {
@@ -506,6 +656,6 @@ app.post("/createregdata", (req, res) => {
 /////////////////////////////////////////////////////////////////////////////////////
 app.listen(3001, () => {
   console.log(
-    "  Server running on port 3001 \n  ➜  Local:   http://localhost:3001/ "
+    "  Server running on port 3001 \n  ➜  Local:   /api/ "
   );
 });

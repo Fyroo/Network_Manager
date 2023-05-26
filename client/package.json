@@ -32,6 +32,8 @@
     "formik": "^2.2.9",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-loader-spinner": "^5.3.4",
+    "react-loading-skeleton": "^3.3.1",
     "react-pro-sidebar": "^0.7.1",
     "react-router-dom": "^6.8.2",
     "react-spring": "^9.7.1",

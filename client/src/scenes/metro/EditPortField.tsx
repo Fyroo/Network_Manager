@@ -7,7 +7,7 @@ import { useSpring,animated } from "@react-spring/web";
 import SaveIcon from "@mui/icons-material/Save";
 import EditIcon from "@mui/icons-material/Edit";
 
-const EditPortField = ({ portId}:{portId:any}) => {
+const EditPortField = ({ portId,role}:{portId:any;role: string;}) => {
   const [isEditing, setIsEditing] = useState(false);
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
@@ -31,7 +31,7 @@ const EditPortField = ({ portId}:{portId:any}) => {
 
 function handelSaveClick(){
   axios
-  .put(`http://localhost:3001/updateport/${portId}`, {
+  .put(`/api/updateport/${portId}`, {
     address: portAddress,
     affport: portAff,
     breakout: portBreakout,
@@ -46,7 +46,7 @@ function handelSaveClick(){
 
     const getPort = async () => {
         try {
-            const response = await axios.get(`http://localhost:3001/port/${portId}`);
+            const response = await axios.get(`/api/port/${portId}`);
             const portData = response.data[0];
              setPortOptHead(portData.opthead);
              setPortAddress(portData.address);
@@ -75,7 +75,7 @@ function handelSaveClick(){
           <IconButton
             aria-label="save"
             sx={{ color: colors.blueAccent[100] }}
-            disabled={portAddress === "No Port Selected" || !isEditing}
+            disabled={portAddress === "No Port Selected" || !isEditing || role=='Utilisateur'}
             onClick={() => handelSaveClick()}
           >
             <SaveIcon />
@@ -84,7 +84,7 @@ function handelSaveClick(){
           <IconButton
             aria-label="edit"
             sx={{ color: colors.blueAccent[100] }}
-            disabled={portAddress === "No Port Selected" || isEditing}
+            disabled={portAddress === "No Port Selected" || isEditing || role==='Utilisateur'}
             onClick={() => setIsEditing(true)}
           >
             <EditIcon />
@@ -223,9 +223,6 @@ function handelSaveClick(){
               />
             </Box>
             <Box sx={{ mt: "20px" }}>
-          {/* <Button variant="contained" color="primary" onClick={handelSaveClick}>
-            Save
-          </Button> */}
         </Box>
         
     </Box>   ) : (
