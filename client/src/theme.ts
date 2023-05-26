@@ -121,7 +121,7 @@ export const tokens = (mode:any) => ({
 });
 
 // mui theme settings
-export const themeSettings = (mode:any) => {
+export const themeSettings = (mode: any) => {
   const colors = tokens(mode);
   return {
     palette: {
@@ -147,7 +147,7 @@ export const themeSettings = (mode:any) => {
         : {
             // palette values for light mode
             primary: {
-              main: colors.primary[100],
+              main: colors.primary[500],
             },
             secondary: {
               main: colors.greenAccent[500],
@@ -164,30 +164,46 @@ export const themeSettings = (mode:any) => {
     },
     typography: {
       fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-      fontSize: 12,
+      fontSize: 14,
       h1: {
         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
         fontSize: 40,
+        fontWeight: 700,
       },
       h2: {
         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
         fontSize: 32,
+        fontWeight: 700,
       },
       h3: {
         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
         fontSize: 24,
+        fontWeight: 700,
       },
       h4: {
         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
         fontSize: 20,
+        fontWeight: 700,
       },
       h5: {
         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
         fontSize: 16,
+        fontWeight: 700,
       },
       h6: {
         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
         fontSize: 14,
+        fontWeight: 700,
+      },
+      body1: {
+        fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+        fontSize: 14,
+        fontWeight: 400,
+      },
+      body2: {
+        fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+        fontSize: 12,
+        fontWeight: 400,
       },
     },
   };
@@ -198,7 +214,7 @@ export const ColorModeContext = createContext({
   toggleColorMode: () => {},
 });
 export const useMode = () => {
-  const [mode, setMode] = useState("dark");
+  const [mode, setMode] = useState("light"); // Set initial state to "light"
 
   const toggleColorMode = () =>
     setMode((prev) => (prev === "light" ? "dark" : "light"));

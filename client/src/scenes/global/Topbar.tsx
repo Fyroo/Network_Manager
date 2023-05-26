@@ -5,8 +5,20 @@ import InputBase from "@mui/material/InputBase";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import SearchIcon from "@mui/icons-material/Search";
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
+import axios from "axios";
 
 const Topbar:React.FC = () => {
+  const handleLogout = async () => {
+    try {
+      await axios.get('/api/logout');
+      // Perform any additional actions or redirects after successful logout
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
   // Retrieve the current theme object
   const theme = useTheme();
 
@@ -50,6 +62,13 @@ const Topbar:React.FC = () => {
             <LightModeOutlinedIcon />
           )}
         </IconButton>
+        <IconButton href="/profile-settings">
+            <SettingsOutlinedIcon/>
+        </IconButton>
+       
+        <IconButton onClick={handleLogout} href="/">
+  <ExitToAppOutlinedIcon />
+</IconButton>
       </Box>
     </Box>
   );

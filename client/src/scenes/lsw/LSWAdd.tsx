@@ -6,22 +6,22 @@ import Header from "../../components/Header";
 import {Typography, TextField, Button, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
 
-const MetroAdd = () => {
+const LSWAdd = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [name, setName] = useState("");
-  const [ip, setIp] = useState("");
+  const [uplink, setUplink] = useState("");
   const [model, setModel] = useState("");
 
-  const addMetro = () => {
-    axios.post("/api/createmetro",
-    { name: name, ip: ip, model: model }).then(() => { console.log('yes') })
+  const addLSW = () => {
+    axios.post("/api/createLSW",
+    { name: name, uplink:uplink, model: model }).then(() => { console.log('yes') })
     
   };
 
   return (
     <Box m={"20px"}>
-    <Header title="Add Metro" subtitle="subtitle" addlink={"/"} withbtn={true} variant="1"/> 
+    <Header title="Add LSW" subtitle="subtitle" addlink={"/LSW"} withbtn={true} variant="1"/> 
     <Box sx={{ padding: "24px" }}  style={{ backgroundColor:colors.blueAccent[700]}}>
     <Box >
       <Typography
@@ -46,13 +46,13 @@ const MetroAdd = () => {
         gutterBottom
         sx={{ fontWeight: "bold", mb: "8px" }}
       >
-        IP:
+        Uplink:
       </Typography>
       <TextField
         variant="outlined"
         fullWidth
-        value={ip}
-        onChange={(event) => setIp(event.target.value)}
+        value={uplink}
+        onChange={(event) => setUplink(event.target.value)}
       />
     </Box>
     <Box sx={{ mt: "16px" }}>
@@ -64,28 +64,29 @@ const MetroAdd = () => {
       >
         Model:
       </Typography>
-      
+
       <FormControl fullWidth>
   <InputLabel id="demo-simple-select-label">LSW Model</InputLabel>
   <Select
     labelId="demo-simple-select-label"
     id="demo-simple-select"
     value={model}
-    label="Metro Model"
+    label="LSW Model"
     onChange={(event) => {
       setModel(event.target.value);
     }}
   >
-    <MenuItem value={"ASR 9K"}>ASR 9K</MenuItem>
-    <MenuItem value={"NCS540"}>NCS540</MenuItem>
-    <MenuItem value={"ASR 903"}>ASR 903</MenuItem>
-    <MenuItem value={"ME-3800"}>ME-3800</MenuItem>
+    <MenuItem value={"LSW 5700"}>LSW 5700</MenuItem>
+    <MenuItem value={"LSW 7706"}>LSW 7706</MenuItem>
+    <MenuItem value={"LSW 5720"}>LSW 5720</MenuItem>
+    <MenuItem value={"LSW 5735"}>LSW 5735</MenuItem>
   </Select>
 </FormControl>
+
     </Box>
     <Box sx={{ mt: "24px" }}>
-      <Button variant="contained" color="primary" onClick={addMetro}>
-        Add Metro
+      <Button variant="contained" color="primary" onClick={addLSW}>
+        Add LSW
       </Button>
     </Box>
   </Box>
@@ -93,4 +94,4 @@ const MetroAdd = () => {
   );
 };
 
-export default MetroAdd;
+export default LSWAdd;

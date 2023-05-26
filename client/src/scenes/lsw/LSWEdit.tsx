@@ -2,24 +2,25 @@ import { useState, useEffect } from "react";
 import { Box, useTheme } from "@mui/system";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
-import { Typography, TextField, Button, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { Typography, TextField, Button, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 
-const MetroEdit = () => {
+const LSWEdit = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [routerName, setRouterName] = useState("");
-  const [newIp, setNewIp] = useState("");
-  const [newModel, setNewModel] = useState("");
+  const [name, setName] = useState("");
+  const [uplink, setUplink] = useState("");
+  const [model, setModel] = useState("");
+  const [lswId, setlswId] = useState();
   const location = useLocation();
 
-  const updateMetro = (name:any) => {
+  const updateLSW = () => {
     axios
-      .put("/api/updatemetro", {
-        ip: newIp,
-        model: newModel,
+      .put(`/api/updateLSW/${lswId}`, {
+        uplink: uplink,
+        model: model,
         name: name,
       })
       .then((response) => {
@@ -28,12 +29,15 @@ const MetroEdit = () => {
   };
 
   useEffect(() => {
-    setRouterName(location.state.routerName);
+    setName(location.state.lswName);
+    setUplink(location.state.lswUplink);
+    setlswId(location.state.lswId);
+    setModel(location.state.lswModel);
   }, []);
 
   return (
     <Box m={"20px"}>
-      <Header title="Edit Metro" subtitle="subtitle" addlink={"/"} withbtn={true} variant="1" />
+      <Header title="Edit LSW" subtitle="subtitle" addlink={"/LSW"} withbtn={true} variant="1" />
       <Box sx={{ padding: "24px" }} style={{ backgroundColor: colors.blueAccent[700] }}>
         <Box>
           <Typography
@@ -44,7 +48,15 @@ const MetroEdit = () => {
           >
             Name:
           </Typography>
-          <Typography padding={'10px'} variant="h4" color={colors.greenAccent[300]}>{routerName}</Typography>
+          <TextField
+            variant="outlined"
+            fullWidth
+            defaultValue={location.state.lswName}
+            onChange={(event) => {
+              setName(event.target.value);
+            }}
+          />
+
           
         </Box>
         <Box sx={{ mt: "16px" }}>
@@ -54,14 +66,14 @@ const MetroEdit = () => {
             gutterBottom
             sx={{ fontWeight: "bold", mb: "8px" }}
           >
-            IP:
+            Uplink:
           </Typography>
           <TextField
             variant="outlined"
             fullWidth
-            defaultValue={location.state.routerIp}
+            defaultValue={location.state.lswUplink}
             onChange={(event) => {
-              setNewIp(event.target.value);
+              setUplink(event.target.value);
             }}
           />
         </Box>
@@ -79,22 +91,23 @@ const MetroEdit = () => {
   <Select
     labelId="demo-simple-select-label"
     id="demo-simple-select"
-    value={newModel}
-    label="Metro Model"
+    defaultValue={model}
+    label="LSW Model"
     onChange={(event) => {
-      setNewModel(event.target.value);
+      setModel(event.target.value);
     }}
   >
-    <MenuItem value={"ASR 9K"}>ASR 9K</MenuItem>
-    <MenuItem value={"NCS540"}>NCS540</MenuItem>
-    <MenuItem value={"ASR 903"}>ASR 903</MenuItem>
-    <MenuItem value={"ME-3800"}>ME-3800</MenuItem>
+    <MenuItem value={"LSW 5700"}>LSW 5700</MenuItem>
+    <MenuItem value={"LSW 7706"}>LSW 7706</MenuItem>
+    <MenuItem value={"LSW 5720"}>LSW 5720</MenuItem>
+    <MenuItem value={"LSW 5735"}>LSW 5735</MenuItem>
+   
   </Select>
 </FormControl>
         </Box>
         <Box sx={{ mt: "24px" }}>
-          <Button variant="contained" color="primary" onClick={() => updateMetro(routerName)}>
-            Update Metro
+          <Button variant="contained" color="primary" onClick={() => updateLSW()}>
+            Update LSW
           </Button>
         </Box>
       </Box>
@@ -102,4 +115,4 @@ const MetroEdit = () => {
   );
 };
 
-export default MetroEdit;
+export default LSWEdit;
